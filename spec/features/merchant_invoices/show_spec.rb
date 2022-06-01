@@ -32,7 +32,6 @@ RSpec.describe "Merchant Invoice Show page" do
     end
 
     within "#invoice-#{@invoice_1.id}" do
-      save_and_open_page
       expect(page).to have_content("Status: completed")
       expect(page).to have_content("Created on: Saturday, January 01, 2022 ")
       expect(page).to have_content("Joey Ondricka")
