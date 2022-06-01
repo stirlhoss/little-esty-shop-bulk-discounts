@@ -1,9 +1,24 @@
 <h1>Little Esty Shop</h1>
-
-<div id="merchants">
-
+<div id="enabled">
+  <strong>Enabled Merchants</strong>
   <% @merchants.each do |merchant| %>
-    <p><%= link_to merchant.name, admin_merchant_path(merchant) %></p>
-  <% end %>
-
+    <div id="enabled-<%= merchant.id %>">
+      <% if merchant.status == "Enabled" %>
+        <%= link_to merchant.name, admin_merchant_path(merchant) %>
+        <%= button_to 'Disable', admin_merchant_path(merchant), method: :patch, params: { merchant: {status: "Disabled"} } %>
+      </div>
+    <%end%>
+  <%end%>
+</div>
+<br>
+<div id="disabled">
+  <strong>Disabled Merchants</strong>
+  <% @merchants.each do |merchant| %>
+    <div id="disabled-<%= merchant.id %>">
+      <% if merchant.status == "Disabled" %>
+        <%= link_to merchant.name, admin_merchant_path(merchant) %>
+        <%= button_to 'Enable', admin_merchant_path(merchant), method: :patch, params: { merchant: {status: "Enabled"} } %>
+      </div>
+    <%end%>
+  <%end%>
 </div>
