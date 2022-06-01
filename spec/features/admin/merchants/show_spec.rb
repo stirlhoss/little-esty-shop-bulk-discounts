@@ -46,11 +46,10 @@ RSpec.describe 'Admin Merchant Show', type: :feature do
     @t4 = Transaction.create!(credit_card_number: 230_429, result: 1, invoice_id: @i5.id)
     @t5 = Transaction.create!(credit_card_number: 102_938, result: 1, invoice_id: @i6.id)
     @t6 = Transaction.create!(credit_card_number: 102_938, result: 1, invoice_id: @i1.id)
-
-    visit admin_merchants_path
   end
 
   it 'should have links to it from admin/index' do
+    visit admin_merchants_path
     click_on @m1.name
 
     expect(current_path).to eq(admin_merchant_path(@m1))

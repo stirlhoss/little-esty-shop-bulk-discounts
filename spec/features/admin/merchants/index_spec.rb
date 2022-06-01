@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe 'Admin Merchant Index', type: :feature do
   before :each do
     @m1 = Merchant.create!(name: 'Merchant 1')
-    @m2 = Merchant.create!(name: 'Merchant 2')
+    @m2 = Merchant.create!(name: 'Merchant 2', status: 0)
     @m3 = Merchant.create!(name: 'Merchant 3')
-    @m4 = Merchant.create!(name: 'Merchant 4')
-    @m5 = Merchant.create!(name: 'Merchant 5')
+    @m4 = Merchant.create!(name: 'Merchant 4', status: 0)
+    @m5 = Merchant.create!(name: 'Merchant 5', status: 0)
     @m6 = Merchant.create!(name: 'Merchant 6')
 
     @c1 = Customer.create!(first_name: 'Yo', last_name: 'Yoz')
@@ -57,5 +57,33 @@ RSpec.describe 'Admin Merchant Index', type: :feature do
     expect(page).to have_content(@m4.name)
     expect(page).to have_content(@m5.name)
     expect(page).to have_content(@m6.name)
+  end
+
+  it 'should allow disabling and enabling a merchant' do
+    within "#disabled-#{@m1.id}" do
+      click_on 'Enable'
+    end
+
+    expect(current_path).to eq(admin_merchants_path)
+
+    within "#enabled-#{@m1.id}" do
+      expect(page).to have_content(@m1.name)
+      expect(page).to have_button('Disable')
+    end
+  end
+
+  it 'should have two sections for Enabled/Disabled Merchants' do
+    within '#disabled' do
+      within "#disabled-#{@m1.id}" do
+        click_on 'Enable'
+      end
+    end
+
+    within '#enabled' do
+      within "#enabled-#{@m1.id}" do
+        expect(page).to have_content(@m1.name)
+        expect(page).to have_button('Disable')
+      end
+    end
   end
 end
