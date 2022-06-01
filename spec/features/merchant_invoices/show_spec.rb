@@ -37,4 +37,14 @@ RSpec.describe "Merchant Invoice Show page" do
       expect(page).to have_content("Joey Ondricka")
     end
   end
+
+  it 'displays the inovice items information' do
+    visit merchant_invoice_path(@merchant, @invoice_1)
+    within "#invoice-items-#{@invoice_1.id}" do
+      expect(page).to have_content("Item Name: Pencil")
+      expect(page).to have_content("Item Quantity: 3")
+      expect(page).to have_content("Item Price: 500")
+      expect(page).to have_content("Invoice Item Status: packaged")
+    end
+  end
 end
