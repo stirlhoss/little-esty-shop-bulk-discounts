@@ -15,13 +15,6 @@ RSpec.describe "Merchant Invoice Show page" do
                                                                                            created_at: Time.parse("2012-03-27 14:54:09 UTC"))
         @item_2.invoice_items.create!(invoice_id: @invoice_7.id, quantity: 5, unit_price: 400, status: 'packaged',
                                                                                            created_at: Time.parse("2012-03-28 14:54:09 UTC"))
-
-    @invoice_1.transactions.create!(credit_card_number: '4654405418249632', result: 'success')
-    @invoice_1.transactions.create!(credit_card_number: '4654405418249631', result: 'success')
-    @invoice_1.transactions.create!(credit_card_number: '4654405418249633', result: 'success')
-    @invoice_1.transactions.create!(credit_card_number: '4654405418249635', result: 'success')
-    @invoice_1.transactions.create!(credit_card_number: '4654405418249635', result: 'success')
-    @invoice_1.transactions.create!(credit_card_number: '4654405418249635', result: 'success')
   end
 
   it "displays the invoice information in the show page" do
