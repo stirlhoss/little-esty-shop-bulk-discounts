@@ -13,15 +13,8 @@ RSpec.describe "Merchant Invoice Show page" do
         @invoice_7 = @customer_1.invoices.create!(status: 'completed')
         @item_1.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 3, unit_price: 400, status: 'packaged',
                                                                                            created_at: Time.parse("2012-03-27 14:54:09 UTC"))
-        @item_2.invoice_items.create!(invoice_id: @invoice_7.id, quantity: 5, unit_price: 400, status: 'packaged',
+        @item_2.invoice_items.create!(invoice_id: @invoice_7.id, quantity: 5, unit_price: 375, status: 'packaged',
                                                                                            created_at: Time.parse("2012-03-28 14:54:09 UTC"))
-
-    @invoice_1.transactions.create!(credit_card_number: '4654405418249632', result: 'success')
-    @invoice_1.transactions.create!(credit_card_number: '4654405418249631', result: 'success')
-    @invoice_1.transactions.create!(credit_card_number: '4654405418249633', result: 'success')
-    @invoice_1.transactions.create!(credit_card_number: '4654405418249635', result: 'success')
-    @invoice_1.transactions.create!(credit_card_number: '4654405418249635', result: 'success')
-    @invoice_1.transactions.create!(credit_card_number: '4654405418249635', result: 'success')
   end
 
   it "displays the invoice information in the show page" do
@@ -40,11 +33,22 @@ RSpec.describe "Merchant Invoice Show page" do
 
   it 'displays the inovice items information' do
     visit merchant_invoice_path(@merchant, @invoice_1)
+
     within "#invoice-items-#{@invoice_1.id}" do
       expect(page).to have_content("Item Name: Pencil")
       expect(page).to have_content("Item Quantity: 3")
       expect(page).to have_content("Item Price: 500")
       expect(page).to have_content("Invoice Item Status: packaged")
+    end
+  end
+
+  it 'displays the total revenue of the items on the invoice' do
+    @item_2.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 1, unit_price: 375, status: 'packaged',
+                                                                                       created_at: Time.parse("2012-03-28 14:54:09 UTC"))
+    visit merchant_invoice_path(@merchant, @invoice_1)
+
+    within "#invoice-#{@invoice_1.id}" do
+      expect(page).to have_content("Total Revenue: $15.75")
     end
   end
 end

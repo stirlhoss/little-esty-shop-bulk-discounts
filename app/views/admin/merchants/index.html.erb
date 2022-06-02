@@ -1,24 +1,39 @@
 <h1>Little Esty Shop</h1>
-<div id="enabled">
-  <strong>Enabled Merchants</strong>
-  <% @merchants.each do |merchant| %>
-    <div id="enabled-<%= merchant.id %>">
-      <% if merchant.status == "Enabled" %>
-        <%= link_to merchant.name, admin_merchant_path(merchant) %>
-        <%= button_to 'Disable', admin_merchant_path(merchant), method: :patch, params: { merchant: {status: "Disabled"} } %>
-      </div>
+
+<div id="all_merchants">
+  <div id="enabled">
+    <strong>Enabled Merchants</strong>
+    <% @merchants.each do |merchant| %>
+      <div id="enabled-<%= merchant.id %>">
+        <% if merchant.status == "Enabled" %>
+          <%= link_to merchant.name, admin_merchant_path(merchant) %>
+          <%= button_to 'Disable', admin_merchant_path(merchant), method: :patch, params: { merchant: {status: "Disabled"} } %>
+        </div>
+      <%end%>
     <%end%>
-  <%end%>
+  </div>
+  <br>
+  <div id="disabled">
+    <strong>Disabled Merchants</strong>
+    <% @merchants.each do |merchant| %>
+      <div id="disabled-<%= merchant.id %>">
+        <% if merchant.status == "Disabled" %>
+          <%= link_to merchant.name, admin_merchant_path(merchant) %>
+          <%= button_to 'Enable', admin_merchant_path(merchant), method: :patch, params: { merchant: {status: "Enabled"} } %>
+        </div>
+      <%end%>
+    <%end%>
+  </div>
 </div>
-<br>
-<div id="disabled">
-  <strong>Disabled Merchants</strong>
-  <% @merchants.each do |merchant| %>
-    <div id="disabled-<%= merchant.id %>">
-      <% if merchant.status == "Disabled" %>
-        <%= link_to merchant.name, admin_merchant_path(merchant) %>
-        <%= button_to 'Enable', admin_merchant_path(merchant), method: :patch, params: { merchant: {status: "Enabled"} } %>
-      </div>
-    <%end%>
-  <%end%>
+
+<%= link_to "Create New Merchant", new_admin_merchant_path %>
+
+<div id="top_five_merchants">
+  <h3>Top Merchants</h3>
+  <% @merchants.top_five_merchants.each do |merchant| %>
+    <p><%= link_to merchant.name, admin_merchant_path(merchant)%>
+      - $<%= merchant.total_revenue %>
+      in sales</p>
+  <% end %>
+
 </div>
