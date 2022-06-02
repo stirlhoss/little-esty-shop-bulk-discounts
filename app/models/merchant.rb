@@ -14,4 +14,8 @@ class Merchant < ApplicationRecord
              .order(transaction_total: :desc)
              .limit(5).to_a
   end
+
+  def unshipped_items
+    require "pry"; binding.pry
+  end
 end

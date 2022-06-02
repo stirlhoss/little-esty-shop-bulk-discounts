@@ -62,8 +62,6 @@ RSpec.describe Merchant, type: :model do
     @invoice_11 = @customer_5.invoices.create(status: "completed")
     @item_2.invoice_items.create!(invoice_id: @invoice_11.id, quantity: 4, unit_price: 5, status: 0)
     @invoice_11.transactions.create!(credit_card_number: '6654405418249643', result: 'success')
-    @invoice_11.transactions.create!(credit_card_number: '6654405418249632', result: 'success')
-    @invoice_11.transactions.create!(credit_card_number: '6654405418249632', result: 'success')
 
     @customer_6 = Customer.create!(first_name: 'Smark', last_name: 'Mrains')
     @invoice_13 = @customer_6.invoices.create(status: "in progress")
@@ -74,4 +72,6 @@ RSpec.describe Merchant, type: :model do
   it "#fave_customers" do
     expect(@merchant.fave_customers).to eq([@customer_4, @customer_1, @customer_2, @customer_3, @customer_5])
   end
+
+  
 end
