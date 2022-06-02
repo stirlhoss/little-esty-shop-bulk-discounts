@@ -19,7 +19,6 @@ class Item < ApplicationRecord
   end
 
   def total_item_revenue
-    # invoice_items.sum("quantity * unit_price").to_f / 100
     invoice_items.sum("quantity * unit_price").to_s.rjust(3, "0").insert(-3, ".")
   end 
 end
