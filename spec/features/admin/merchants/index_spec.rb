@@ -51,12 +51,12 @@ RSpec.describe 'Admin Merchant Index', type: :feature do
   end
 
   it 'should display all merchants by name' do
-    expect(page).to have_content(@m1.name)
-    expect(page).to have_content(@m2.name)
-    expect(page).to have_content(@m3.name)
-    expect(page).to have_content(@m4.name)
-    expect(page).to have_content(@m5.name)
-    expect(page).to have_content(@m6.name)
+    expect(page).to have_link(@m1.name)
+    expect(page).to have_link(@m2.name)
+    expect(page).to have_link(@m3.name)
+    expect(page).to have_link(@m4.name)
+    expect(page).to have_link(@m5.name)
+    expect(page).to have_link(@m6.name)
   end
 
   it 'should allow disabling and enabling a merchant' do
@@ -106,9 +106,27 @@ RSpec.describe 'Admin Merchant Index', type: :feature do
 
   it 'should have a list of top 5 merchants by revenue with that metric displayed' do
     within '#top_five_merchants' do
+      expect(page).to have_link(@m1.name)
+      expect(page).to have_link(@m2.name)
+      expect(page).to have_link(@m3.name)
+    end
+
+    within '#top_five_merchants' do
       expect(@m1.name).to appear_before(@m3.name)
       expect(@m3.name).to appear_before(@m2.name)
       expect(@m2.name).to_not appear_before(@m3.name)
+    end
+  end
+
+  it 'should have a top selling day for the top 5 merchants' do
+    within "#top_day-#{@m1.id}" do
+      expect(page).to have_content('06/02/22')
+    end
+    within "#top_day-#{@m2.id}" do
+      expect(page).to have_content('06/02/22')
+    end
+    within "#top_day-#{@m3.id}" do
+      expect(page).to have_content('06/02/22')
     end
   end
 end
