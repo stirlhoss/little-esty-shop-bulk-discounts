@@ -79,12 +79,14 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
     within("#id-#{@customer_1.id}") do
       expect(page).to have_content(@customer_1.first_name)
       expect(page).to have_content(@customer_1.last_name)
+      expect(page).to_not have_content(@customer_7.first_name)
       expect(page).to have_content(5)
     end
 
     within "#id-#{@customer_2.id}" do
       expect(page).to have_content(@customer_2.first_name)
       expect(page).to have_content(@customer_2.last_name)
+      expect(page).to_not have_content(@customer_7.last_name)
       expect(page).to have_content(4)
     end
 
@@ -97,6 +99,7 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
     within "#id-#{@customer_6.id}" do
       expect(page).to have_content(@customer_6.first_name)
       expect(page).to have_content(@customer_6.last_name)
+      expect(page).to_not have_content(@customer_1.last_name)
       expect(page).to have_content(1)
     end
   end
