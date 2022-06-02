@@ -24,7 +24,6 @@ class Admin::MerchantsController < ApplicationController
   end
 
   def create
-    # binding.pry
     Merchant.create!(name: params[:name])
 
     redirect_to admin_merchants_path
