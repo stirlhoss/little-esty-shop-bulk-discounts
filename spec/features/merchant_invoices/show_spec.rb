@@ -40,11 +40,22 @@ RSpec.describe "Merchant Invoice Show page" do
 
   it 'displays the inovice items information' do
     visit merchant_invoice_path(@merchant, @invoice_1)
+
     within "#invoice-items-#{@invoice_1.id}" do
       expect(page).to have_content("Item Name: Pencil")
       expect(page).to have_content("Item Quantity: 3")
       expect(page).to have_content("Item Price: 500")
       expect(page).to have_content("Invoice Item Status: packaged")
+    end
+  end
+
+  it 'displays the total revenue of the items on the invoice' do
+    @item_2.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 1, unit_price: 400, status: 'packaged',
+                                                                                       created_at: Time.parse("2012-03-28 14:54:09 UTC"))
+    visit merchant_invoice_path(@merchant, @invoice_1)
+
+    within "##invoice-#{@invoice_1.id}" do
+      expect(page).to have_content("Total Revenue: $160.00")
     end
   end
 end
