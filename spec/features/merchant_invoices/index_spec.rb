@@ -42,6 +42,7 @@ RSpec.describe 'Merchant Invoice page' do
 
   it 'Links each invoice with its specific show page' do
     visit merchant_invoices_path(@merchant.id)
+
     click_on "Invoice ##{@invoice_1.id}"
 
     expect(current_path).to eq(merchant_invoice_path(@merchant, @invoice_1))
@@ -49,6 +50,7 @@ RSpec.describe 'Merchant Invoice page' do
 
   it 'Links each invoice with its specific show page' do
     visit merchant_invoices_path(@merchant.id)
+
     click_on "Invoice ##{@invoice_7.id}"
 
     expect(current_path).to eq(merchant_invoice_path(@merchant, @invoice_7))
