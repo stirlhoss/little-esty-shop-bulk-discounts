@@ -41,14 +41,14 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
     @invoice_9.transactions.create!(credit_card_number: '6654405418249632', result: 'success')
     @invoice_9.transactions.create!(credit_card_number: '6654405418249632', result: 'success')
 
-    @customer_5 = Customer.create!(first_name: 'Eileen', last_name: 'Gerlach')
-    @invoice_11 = @customer_5.invoices.create(status: "completed")
-    @item_2.invoice_items.create!(invoice_id: @invoice_11.id, quantity: 4, unit_price: 5, status: 0)
-    @invoice_11.transactions.create!(credit_card_number: '6654405418249643', result: 'success')
-  
-    @customer_6 = Customer.create!(first_name: 'Smark', last_name: 'Mrains')
-    @invoice_13 = @customer_6.invoices.create(status: "in progress")
-    @item_2.invoice_items.create!(invoice_id: @invoice_11.id, quantity: 4, unit_price: 5, status: 'pending')
+    @customer_6 = Customer.create!(first_name: 'Eileen', last_name: 'Garcia')
+    @invoice_14 = @customer_6.invoices.create(status: "in progress")
+    @item_2.invoice_items.create!(invoice_id: @invoice_14.id, quantity: 4, unit_price: 5, status: 'pending')
+    @invoice_14.transactions.create!(credit_card_number: '6654405418249644', result: 'success')
+
+    @customer_7 = Customer.create!(first_name: 'Smark', last_name: 'Mrains')
+    @invoice_13 = @customer_7.invoices.create(status: "in progress")
+    @item_2.invoice_items.create!(invoice_id: @invoice_13.id, quantity: 4, unit_price: 5, status: 'pending')
     @invoice_13.transactions.create!(credit_card_number: '6654405418249644', result: 'failed')
   end
 
@@ -69,7 +69,7 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
 
   it 'should display top 5 customers with number of successful transactions' do
     visit merchant_dashboard_index_path(@merchant.id)
-save_and_open_page
+
     within "#id-#{@customer_4.id}" do
       expect(page).to have_content(@customer_4.first_name)
       expect(page).to have_content(@customer_4.last_name)
@@ -94,9 +94,9 @@ save_and_open_page
       expect(page).to have_content(3)
     end
 
-    within "#id-#{@customer_5.id}" do
-      expect(page).to have_content(@customer_5.first_name)
-      expect(page).to have_content(@customer_5.last_name)
+    within "#id-#{@customer_6.id}" do
+      expect(page).to have_content(@customer_6.first_name)
+      expect(page).to have_content(@customer_6.last_name)
       expect(page).to have_content(1)
     end
   end

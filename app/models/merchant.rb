@@ -9,13 +9,14 @@ class Merchant < ApplicationRecord
   def fave_customers
     customers.joins(invoices: :transactions)
              .where(transactions: { result: 0 })
-             .select("customers.*, count(transactions) as transaction_total")
+             .select("customers.*, count(transactions.result) as transaction_total")
              .group(:id)
              .order(transaction_total: :desc)
-             .limit(5).to_a
+             .distinct
+             .limit(5)
   end
 
   def unshipped_items
-    require "pry"; binding.pry
+    # require "pry"; binding.pry
   end
 end
