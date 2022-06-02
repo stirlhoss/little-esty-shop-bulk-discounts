@@ -31,7 +31,7 @@
 <div id="top_five_merchants">
   <h3>Top Merchants</h3>
   <% @merchants.top_five_merchants.each do |merchant| %>
-    <p><%= merchant.name %>
+    <p><%= link_to merchant.name, admin_merchant_path(merchant)%>
       - $<%= merchant.total_revenue %>
       in sales</p>
   <% end %>
