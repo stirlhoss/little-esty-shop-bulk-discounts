@@ -24,3 +24,12 @@
 <%end%>
 
 <%= link_to "Create Item", new_merchant_item_path(@merchant.id) %>
+
+<strong>Top Items</strong>
+<div id="popular">
+<% @items.most_popular_items.each_with_index do |item, index| %>
+<div id="popular-<%= index %>">
+  <ol><%= item.name %>- $<%= item.total_item_revenue %> in sales</ol>
+  </div>
+<%end%>
+</div>
