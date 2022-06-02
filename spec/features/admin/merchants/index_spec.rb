@@ -86,4 +86,21 @@ RSpec.describe 'Admin Merchant Index', type: :feature do
       end
     end
   end
+
+  it 'should have a link to a working new merchant form' do
+    expect(page).to have_content('Create New Merchant')
+
+    click_on 'Create New Merchant'
+
+    expect(current_path).to eq(new_admin_merchant_path)
+
+    fill_in :name, with: 'Bryces Goodies'
+    click_button 'Save'
+
+    expect(current_path).to eq(admin_merchants_path)
+
+    within('#disabled') do
+      expect(page).to have_content('Bryces Goodies')
+    end
+  end
 end
