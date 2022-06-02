@@ -30,10 +30,14 @@
 
 <div id="top_five_merchants">
   <h3>Top Merchants</h3>
-  <% @merchants.top_five_merchants.each do |merchant| %>
-    <p><%= link_to merchant.name, admin_merchant_path(merchant)%>
+  <% @merchants.top_five_merchants.each_with_index do |merchant, index| %>
+    <p><%= index+1 %>.<%= link_to merchant.name, admin_merchant_path(merchant)%>
       - $<%= merchant.total_revenue %>
       in sales</p>
+    <p id='top_day-<%= merchant.id %>'>Top day for
+      <%= merchant.name %>
+      was
+      <%= merchant.best_day.created_at.strftime("%m/%d/%y") %></p>
   <% end %>
 
 </div>
