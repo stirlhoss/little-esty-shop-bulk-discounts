@@ -5,4 +5,8 @@ class InvoiceItem < ApplicationRecord
   belongs_to :item
 
   validates_presence_of :status
+
+  def total_revenue
+    invoice_items.sum("quantity * unit_price").to_f / 100
+  end
 end
