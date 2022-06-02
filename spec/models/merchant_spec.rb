@@ -14,6 +14,11 @@ RSpec.describe Merchant, type: :model do
   end
 
   before :each do
+    # InvoiceItem.destroy_all
+    # Transaction.destroy_all
+    # Invoice.destroy_all
+    # Customer.destroy_all
+    # Merchant.destroy_all
     @merchant = Merchant.create!(name: 'Saba')
     @item_1 = @merchant.items.create!(name: 'Pencil', unit_price: 4, description: 'Writes things.')
     @item_2 = @merchant.items.create!(name: 'Pen', unit_price: 5, description: 'Writes things, but dark.')
@@ -53,16 +58,17 @@ RSpec.describe Merchant, type: :model do
     @invoice_9.transactions.create!(credit_card_number: '6654405418249632', result: 'success')
     @invoice_9.transactions.create!(credit_card_number: '6654405418249632', result: 'success')
 
-    @customer_5 = Customer.create!(first_name: 'Mark', last_name: 'Brains')
+    @customer_5 = Customer.create!(first_name: 'Eileen', last_name: 'Gerlach')
     @invoice_11 = @customer_5.invoices.create(status: "completed")
     @item_2.invoice_items.create!(invoice_id: @invoice_11.id, quantity: 4, unit_price: 5, status: 'packaged')
+    @invoice_11.transactions.create!(credit_card_number: '6654405418249643', result: 'success')
     @invoice_11.transactions.create!(credit_card_number: '6654405418249632', result: 'success')
-    # @invoice_11.transactions.create!(credit_card_number: '6654405418249632', result: 'success')
+    @invoice_11.transactions.create!(credit_card_number: '6654405418249632', result: 'success')
 
     @customer_6 = Customer.create!(first_name: 'Smark', last_name: 'Mrains')
     @invoice_13 = @customer_6.invoices.create(status: "in progress")
-    @item_2.invoice_items.create!(invoice_id: @invoice_11.id, quantity: 4, unit_price: 5, status: 'packaged')
-    @invoice_13.transactions.create!(credit_card_number: '6654405418249632', result: 'failed')
+    @item_2.invoice_items.create!(invoice_id: @invoice_11.id, quantity: 4, unit_price: 5, status: 'pending')
+    @invoice_13.transactions.create!(credit_card_number: '6654405418249644', result: 'failed')
   end
 
   it "#fave_customers" do
