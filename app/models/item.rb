@@ -21,4 +21,8 @@ class Item < ApplicationRecord
   def total_item_revenue
     invoice_items.sum("quantity * unit_price").to_s.rjust(3, "0").insert(-3, ".")
   end 
+
+  def best_day
+    invoices.joins(:invoice_items).where(invoices: {status: 2}).select('invoices.*, sum(invoice_items.unit_price * invoice_items.quantity) as revenue').group(:id).order("revenue desc", "created_at desc").first.created_at.strftime("%m/%d/%Y")
+  end
 end
