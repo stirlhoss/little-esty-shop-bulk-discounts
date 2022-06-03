@@ -1,6 +1,8 @@
+<%= render partial: "shared/header" %>
 
 <h1><%= @item.name %></h1>
-<p>Description: <%= @item.description %>
-<p>Current Price: $<%= @item.unit_price_to_dollars %>
+<p>Description:
+  <%= @item.description %>
+  <p>Current Price: $<%= @item.unit_price_to_dollars %>
 
-<%= link_to "Update Item Info", edit_merchant_item_path(@item.merchant_id, @item.id) %>
+    <%= link_to "Update Item Info", edit_merchant_item_path(@item.merchant_id, @item.id) %>

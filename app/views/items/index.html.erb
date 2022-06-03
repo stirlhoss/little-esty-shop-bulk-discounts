@@ -1,28 +1,32 @@
-<h1>Little Esty Shop</h1>
+<%= render partial: "shared/header" %>
 
-<h3><%= @merchant.name %></h3>
-<strong> My Items </strong></br>
+<strong>
+  My Items
+</strong>
+</br>
 
 <%= link_to "Create Item", new_merchant_item_path(@merchant.id) %></br>
 
-<strong>Enabled Items</strong></br>
+<strong>Enabled Items</strong>
+</br>
 <% @items.each_with_index do |item, index| %>
 <div id="enabled-<%= index %>">
-  <% if item.status == "Enabled" %>
-    <%= link_to item.name, merchant_item_path(@merchant.id, item.id) %>
-    <%= button_to 'Disable Item', merchant_item_path(@merchant.id, item.id), method: :patch, params: { status: "Disabled", item_id: item.id } %>
-  </div>
-  <%end%>
+<% if item.status == "Enabled" %>
+<%= link_to item.name, merchant_item_path(@merchant.id, item.id) %>
+<%= button_to 'Disable Item', merchant_item_path(@merchant.id, item.id), method: :patch, params: { status: "Disabled", item_id: item.id } %>
+</div>
+<%end%>
 <%end%>
 
-<strong>Disabled Items</strong></br>
+<strong>Disabled Items</strong>
+</br>
 <% @items.each_with_index do |item, index| %>
 <div id="disabled-<%= index %>">
-  <% if item.status == "Disabled" %>
-      <%= link_to item.name, merchant_item_path(@merchant.id, item.id) %> 
-      <%= button_to 'Enable Item', merchant_item_path(@merchant.id, item.id), method: :patch, params: { status: "Enabled", item_id: item.id } %>
-    </div>  
-  <%end%>
+<% if item.status == "Disabled" %>
+<%= link_to item.name, merchant_item_path(@merchant.id, item.id) %>
+<%= button_to 'Enable Item', merchant_item_path(@merchant.id, item.id), method: :patch, params: { status: "Enabled", item_id: item.id } %>
+</div>
+<%end%>
 <%end%>
 
 <strong>Top Items</strong>
@@ -30,8 +34,12 @@
 
 <% @items.most_popular_items.each_with_index do |item, index| %>
 <div id="popular-<%= index %>">
- <p><%= link_to item.name, merchant_item_path(@merchant.id, item.id)%>- $<%= item.total_item_revenue %> in sales</p>
-  <p>Top day for <%= item.name %> was <%= item.best_day %></p>
-  </div>
+<p><%= link_to item.name, merchant_item_path(@merchant.id, item.id)%>- $<%= item.total_item_revenue %>
+in sales</p>
+<p>Top day for
+<%= item.name %>
+was
+<%= item.best_day %></p>
+</div>
 <%end%>
 </div>

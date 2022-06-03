@@ -1,12 +1,13 @@
-<h1 id="name"><%= @merchant.name %></h1>
+<%= render partial: "shared/header" %>
 
-<p><%= link_to "My Items", merchant_items_path(@merchant.id) %></p>
-<p><%= link_to "My Invoices", merchant_invoices_path(@merchant.id) %></p>
-
-<h5> My 5 Fave Customers </h5>
+<h5>
+  My 5 Fave Customers
+</h5>
 <% @merchant.fave_customers.each do |customer| %>
   <div id="id-<%= customer.id %>">
-    <li> <%= customer.first_name %> <%= customer.last_name %>
-              <%= customer.transaction_total %></li>
-    <% end %>
-    </div>
+    <li>
+      <%= customer.first_name %>
+      <%= customer.last_name %>
+      <%= customer.transaction_total %></li>
+  <% end %>
+</div>
