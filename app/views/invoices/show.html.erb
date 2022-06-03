@@ -11,10 +11,16 @@
 
 <h2>Items on this Invoice:</h2><br>
 <% @invoice.invoice_items.each do |invoice_item| %>
-<div id="invoice-items-<%=invoice_item.item_id%>">
+<div id="invoice-items-<%=invoice_item.id%>">
   Item Name: <%= invoice_item.item.name %><br>
   Item Quantity: <%= invoice_item.quantity %><br>
   Item Price: <%= invoice_item.item.unit_price %><br>
   Invoice Item Status: <%= invoice_item.status %><br>
+
+  <%= form_with url: merchant_invoice_invoice_item_path(@merchant, invoice_item), method: :patch do |form| %>
+    <%= form.label :status, "Status:" %>
+    <%= form.select :status, options_for_select(["pending", "packaged", "shipped"], selected: "#{invoice_item.status}")%>
+    <%= form.submit "Update Item Status" %>
+  <% end %>
   </div>
 <% end %>

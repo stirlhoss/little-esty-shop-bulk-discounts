@@ -15,6 +15,8 @@ RSpec.describe "Merchant Invoice Show page" do
                                                                                            created_at: Time.parse("2012-03-27 14:54:09 UTC"))
         @invoice_item_2 = @item_2.invoice_items.create!(invoice_id: @invoice_7.id, quantity: 5, unit_price: 375, status: 'packaged',
                                                                                            created_at: Time.parse("2012-03-28 14:54:09 UTC"))
+        @invoice_item_3 = @item_2.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 1, unit_price: 375, status: 'packaged',
+                                                                                           created_at: Time.parse("2012-03-28 14:54:09 UTC"))
   end
 
   it "displays the invoice information in the show page" do
@@ -34,7 +36,7 @@ RSpec.describe "Merchant Invoice Show page" do
   it 'displays the inovice items information' do
     visit merchant_invoice_path(@merchant, @invoice_1)
 
-    within "#invoice-items-#{@invoice_item_1.item_id}" do
+    within "#invoice-items-#{@invoice_item_1.id}" do
       expect(page).to have_content("Item Name: Pencil")
       expect(page).to have_content("Item Quantity: 3")
       expect(page).to have_content("Item Price: 500")
@@ -43,8 +45,7 @@ RSpec.describe "Merchant Invoice Show page" do
   end
 
   it 'displays the total revenue of the items on the invoice' do
-    @invoice_item_3 = @item_2.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 1, unit_price: 375, status: 'packaged',
-                                                                                       created_at: Time.parse("2012-03-28 14:54:09 UTC"))
+
     visit merchant_invoice_path(@merchant, @invoice_1)
 
     within "#invoice-#{@invoice_1.id}" do
@@ -55,28 +56,27 @@ RSpec.describe "Merchant Invoice Show page" do
   it 'can update the status of a invoice item' do
     visit merchant_invoice_path(@merchant, @invoice_1)
 
-    within "#invoice-items-#{@invoice_item_1.item_id}" do
+    within "#invoice-items-#{@invoice_item_1.id}" do
       expect(page).to have_content("Invoice Item Status: packaged")
       select('shipped')
       click_on('Update Item Status')
     end
 
     expect(current_path).to eq(merchant_invoice_path(@merchant, @invoice_1))
-
-    within "#invoice-items-#{@invoice_item_1.item_id}" do
-      expect(page).to have_content("Invoice Item Status: Shipped")
+    within "#invoice-items-#{@invoice_item_1.id}" do
+      expect(page).to have_content("Invoice Item Status: shipped")
     end
 
-    within "#invoice-items-#{@invoice_item_3.item_id}" do
-      expect(page).to have_content("Invoice Item Status: Packaged")
+    within "#invoice-items-#{@invoice_item_3.id}" do
+      expect(page).to have_content("Invoice Item Status: packaged")
       select('shipped')
       click_on('Update Item Status')
     end
+    
+    expect(current_path).to eq(merchant_invoice_path(@merchant, @invoice_1))
 
-    expect(current_path).to eq(merchant_invoice_path(@merchant, @invoice_7))
-
-    within "#invoice-items-#{@invoice_item_3.item_id}" do
-      expect(page).to have_content("Invoice Item Status: Shipped")
+    within "#invoice-items-#{@invoice_item_3.id}" do
+      expect(page).to have_content("Invoice Item Status: shipped")
     end
   end
 end
