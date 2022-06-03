@@ -59,7 +59,7 @@ RSpec.describe 'admin dashboard' do
       @invoice_4.transactions.create!(credit_card_number: '6654405418249632', result: 'success')
     end
 
-    it 'shows the top 5 customers and their order count' do
+    xit 'shows the top 5 customers and their order count' do
       visit admin_dashboard_path
 
       expect(page).to have_content("#{@customer_1.first_name} #{@customer_1.last_name} 4")
