@@ -23,7 +23,7 @@ RSpec.describe Customer, type: :model do
       @invoice_1 = Invoice.create!(customer_id: @customer_1.id, status: 2)
       @invoice_1a = Invoice.create!(customer_id: @customer_1.id, status: 2)
       @invoice_2 = Invoice.create!(customer_id: @customer_2.id, status: 2)
-      @invoice_3 = Invoice.create!(customer_id: @customer_3.id, status: 2)
+      @invoice_3 = Invoice.create!(customer_id: @customer_6.id, status: 2)
       @invoice_4 = Invoice.create!(customer_id: @customer_4.id, status: 2)
       @invoice_5 = Invoice.create!(customer_id: @customer_5.id, status: 2)
       @invoice_6 = Invoice.create!(customer_id: @customer_6.id, status: 2)
@@ -35,7 +35,7 @@ RSpec.describe Customer, type: :model do
       @ii_1 = InvoiceItem.create!(invoice_id: @invoice_1.id, item_id: @item_1.id, quantity: 9, unit_price: 10,
                                   status: 0, created_at: '2012-03-27 14:54:09')
       @ii_10 = InvoiceItem.create!(invoice_id: @invoice_1.id, item_id: @item_1.id, quantity: 9, unit_price: 10,
-                                  status: 0, created_at: '2012-03-27 14:54:09')
+                                   status: 0, created_at: '2012-03-27 14:54:09')
       @ii_2 = InvoiceItem.create!(invoice_id: @invoice_1a.id, item_id: @item_1.id, quantity: 1, unit_price: 10,
                                   status: 0, created_at: '2012-03-29 14:54:09')
       @ii_3 = InvoiceItem.create!(invoice_id: @invoice_3.id, item_id: @item_1.id, quantity: 9, unit_price: 10,
@@ -53,7 +53,7 @@ RSpec.describe Customer, type: :model do
       @ii_8 = InvoiceItem.create!(invoice_id: @invoice_2.id, item_id: @item_1.id, quantity: 1, unit_price: 10,
                                   status: 0, created_at: '2012-03-29 14:54:09')
 
-      @transaction1 = Transaction.create!(credit_card_number: 203_942, result: 0, invoice_id: @invoice_1.id)
+      @transaction1 = Transaction.create!(credit_card_number: 203_942, result: 1, invoice_id: @invoice_1.id)
       @transaction2 = Transaction.create!(credit_card_number: 203_942, result: 0, invoice_id: @invoice_1a.id)
       @transaction3 = Transaction.create!(credit_card_number: 203_942, result: 0, invoice_id: @invoice_2.id)
       @transaction4 = Transaction.create!(credit_card_number: 203_942, result: 0, invoice_id: @invoice_3.id)
@@ -62,7 +62,13 @@ RSpec.describe Customer, type: :model do
     end
 
     it 'creates a list of the top 5 customers' do
-      expect(Customer.top_customers).to eq([@customer_1, @customer_3, @customer_2, @customer_4, @customer_5])
+      # binding.pry
+      # Customer.top_customers.to_a.each do |customer|
+      #   p customer.first_name
+      #   p customer.count
+      # end
+
+      expect(Customer.top_customers.to_a).to eq([@customer_1, @customer_2, @customer_4, @customer_5, @customer_6])
     end
   end
 end

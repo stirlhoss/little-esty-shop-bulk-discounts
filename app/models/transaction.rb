@@ -4,5 +4,6 @@ class Transaction < ApplicationRecord
                         :result
   belongs_to :invoice
 
-  enum result: ['success', 'failed']
+  enum result: %w[success failed]
+  # enum status: { 'success' => 0, 'failed' => 1 }
 end

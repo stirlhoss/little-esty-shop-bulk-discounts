@@ -7,12 +7,18 @@ class Customer < ApplicationRecord
   has_many :transactions, through: :invoices
 
   def self.top_customers
-    joins(invoices: :transactions)
-      .where('transactions.result = ?', 'success')
-      .group('customers.id')
-      .select('customers.*')
+    # joins(:transactions)
+    #   .where('transactions.result = ?', 'success')
+    #   .select('customers.* , count(transactions) as count')
+    #   .group('customers.id')
+    #   .order(count: :desc)
+    #   .limit(5)
+
+    joins(:transactions)
+      .where('transactions.result = ?', '0')
+      .select('customers.* , count(transactions)')
+      .group(:id)
       .order(count: :desc)
       .limit(5)
-      # .count
   end
 end
