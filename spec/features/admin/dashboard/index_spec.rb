@@ -5,7 +5,7 @@ RSpec.describe 'admin dashboard' do
     it 'has an admin header' do
       visit admin_dashboard_path
 
-      within '#header' do
+      within '#nav' do
         expect(page).to have_content('Admin Dashboard')
       end
     end
@@ -13,7 +13,7 @@ RSpec.describe 'admin dashboard' do
     it 'has links to admin/merchants' do
       visit admin_dashboard_path
 
-      within '#merchants' do
+      within '#nav' do
         expect(page).to have_link('Merchants')
         click_link 'Merchants'
         expect(current_path).to eq(admin_merchants_path)
@@ -23,7 +23,7 @@ RSpec.describe 'admin dashboard' do
     it 'has links to admin/invoices' do
       visit admin_dashboard_path
 
-      within '#invoices' do
+      within '#nav' do
         expect(page).to have_link('Invoices')
         click_link 'Invoices'
         expect(current_path).to eq(admin_invoices_path)
@@ -43,10 +43,14 @@ RSpec.describe 'admin dashboard' do
       @invoice_2 = @customer_2.invoices.create!(status: 'completed')
       @invoice_3 = @customer_3.invoices.create!(status: 'completed')
       @invoice_4 = @customer_4.invoices.create!(status: 'in progress')
-      @item.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 3, unit_price: 400, status: 'packaged', created_at: Time.parse("2012-03-27 14:54:09 UTC"))
-      @item.invoice_items.create!(invoice_id: @invoice_2.id, quantity: 5, unit_price: 400, status: 'packaged', created_at: Time.parse("2012-03-27 14:54:09 UTC"))
-      @item.invoice_items.create!(invoice_id: @invoice_3.id, quantity: 1, unit_price: 400, status: 'packaged', created_at: Time.parse("2012-03-27 14:54:09 UTC"))
-      @item.invoice_items.create!(invoice_id: @invoice_4.id, quantity: 7, unit_price: 400, status: 'packaged', created_at: Time.parse("2012-03-27 14:54:09 UTC"))
+      @item.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 3, unit_price: 400, status: 'packaged',
+                                  created_at: Time.parse('2012-03-27 14:54:09 UTC'))
+      @item.invoice_items.create!(invoice_id: @invoice_2.id, quantity: 5, unit_price: 400, status: 'packaged',
+                                  created_at: Time.parse('2012-03-27 14:54:09 UTC'))
+      @item.invoice_items.create!(invoice_id: @invoice_3.id, quantity: 1, unit_price: 400, status: 'packaged',
+                                  created_at: Time.parse('2012-03-27 14:54:09 UTC'))
+      @item.invoice_items.create!(invoice_id: @invoice_4.id, quantity: 7, unit_price: 400, status: 'packaged',
+                                  created_at: Time.parse('2012-03-27 14:54:09 UTC'))
       @invoice_1.transactions.create!(credit_card_number: '4654405418249632', result: 'success')
       @invoice_1.transactions.create!(credit_card_number: '4654405418249631', result: 'success')
       @invoice_1.transactions.create!(credit_card_number: '4654405418249633', result: 'success')
