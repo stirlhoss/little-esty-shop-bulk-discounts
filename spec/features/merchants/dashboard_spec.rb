@@ -87,7 +87,7 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
 
   it 'should display top 5 customers with number of successful transactions' do
     visit merchant_dashboard_index_path(@merchant.id)
-save_and_open_page
+# save_and_open_page
     within "#id-#{@customer_4.id}" do
       expect(page).to have_content(@customer_4.first_name)
       expect(page).to have_content(@customer_4.last_name)

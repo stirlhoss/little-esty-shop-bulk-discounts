@@ -87,8 +87,8 @@ RSpec.describe Merchant, type: :model do
   end
 
   it "#unshipped_items" do
-    expect(@merchant.unshipped_items).to eq([])
+    expect(@merchant.unshipped_items.to_a).to eq([])
   end
 
-  
+
 end
