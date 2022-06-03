@@ -73,5 +73,11 @@ RSpec.describe Merchant, type: :model do
     expect(@merchant.fave_customers).to eq([@customer_4, @customer_1, @customer_2, @customer_3, @customer_5])
   end
 
+<<<<<<< Updated upstream
   
+=======
+  it "#unshipped_items" do
+    expect(@merchant.unshipped_items).to eq([])
+  end
+>>>>>>> Stashed changes
 end
