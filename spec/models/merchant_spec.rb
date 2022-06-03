@@ -126,7 +126,10 @@ RSpec.describe Merchant, type: :model do
     end
 
     it "#unshipped_items" do
-      expect(@merchant.unshipped_items.to_a).to eq([])
+      actual = @m2.unshipped_items.map do |item|
+        item[:name]
+      end
+      expect(actual).to eq([@item_2.name])
     end
   end
 end
