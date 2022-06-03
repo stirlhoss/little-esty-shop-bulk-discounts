@@ -10,11 +10,3 @@
               <%= customer.transaction_total %></li>
     <% end %>
     </div>
-
-<h5> Items Ready to Ship </h5>
-<% @merchant.unshipped_items.each do |item| %>
-  <div id="id-<%= item.id %>">
-    <li> <%= item.name %> <%= link_to item.id merchant_invoice %>
-              <!-- <%= customer.transaction_total %></li> -->
-    <% end %>
-    </div>

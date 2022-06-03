@@ -16,6 +16,7 @@ class Merchant < ApplicationRecord
   end
 
   def unshipped_items
-    require "pry"; binding.pry
+    InvoiceItem.where(status: 1) or where(status: 0).order(:created_at)
+    # require "pry"; binding.pry
   end
 end
