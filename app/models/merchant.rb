@@ -20,5 +20,6 @@ class Merchant < ApplicationRecord
             .select("items.*, invoice_items.status as invoicestatus, invoices.created_at as invoicecreation")
             .where(invoice_items: {status: 1})
             .order(:invoicecreation)
+            
   end
 end
