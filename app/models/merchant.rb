@@ -16,6 +16,6 @@ class Merchant < ApplicationRecord
   end
 
   def unshipped_items
-      invoice_items.where(status: 1).order(:created_at)
+    invoice_items.joins(:invoice).where(status: 1).order("invoices.created_at")
   end
 end

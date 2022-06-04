@@ -45,6 +45,7 @@ RSpec.describe Merchant, type: :model do
       @item_4 = Item.create!(name: 'test', description: 'lalala', unit_price: 6, merchant_id: @m4.id)
       @item_5 = Item.create!(name: 'rest', description: 'dont test me', unit_price: 12, merchant_id: @m5.id)
 
+<<<<<<< Updated upstream
       @ii_1 = InvoiceItem.create!(invoice_id: @i1.id, item_id: @item_1.id, quantity: 12, unit_price: 10, status: 0)
       @ii_2 = InvoiceItem.create!(invoice_id: @i2.id, item_id: @item_2.id, quantity: 6, unit_price: 8, status: 1)
       @ii_3 = InvoiceItem.create!(invoice_id: @i3.id, item_id: @item_3.id, quantity: 16, unit_price: 5, status: 2)
@@ -64,6 +65,10 @@ RSpec.describe Merchant, type: :model do
     # it '#top_five_merchants' do
     #   expect(Merchant.top_five_merchants.to_a).to eq([@m1, @m3, @m2])
     # end
+=======
+  it "#unshipped_items" do
+    expect(@merchant.unshipped_items.to_a).to eq([@invoice_4, @invoice_9])
+>>>>>>> Stashed changes
   end
 
   describe 'instance methods' do
