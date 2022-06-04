@@ -9,9 +9,9 @@ class Customer < ApplicationRecord
   def self.top_customers
     joins(:transactions)
       .where('transactions.result = ?', '0')
-      .select('customers.* , count(transactions)')
+      .select('customers.* , count(transactions) as transaction_count')
       .group(:id)
-      .order(count: :desc)
+      .order(transaction_count: :desc)
       .limit(5)
   end
 end
