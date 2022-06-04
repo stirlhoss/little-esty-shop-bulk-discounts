@@ -10,7 +10,7 @@ RSpec.describe 'Admin Invoice Show page' do
 
     @customer_1 = Customer.create!(first_name: 'Joey', last_name: 'Ondricka')
     @customer_2 = Customer.create!(first_name: 'Chael', last_name: 'Sonnen')
-    @invoice_1 = @customer_1.invoices.create!(status: 'completed')
+    @invoice_1 = @customer_1.invoices.create!(status: 'completed', created_at: 'Sat, 1 Jan 2022 21:20:02 UTC +00:00')
     @invoice_7 = @customer_1.invoices.create!(status: 'completed')
     @invoice_5 = @customer_2.invoices.create!(status: 'completed')
     @item_1.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 3, unit_price: 400, status: 'packaged',
@@ -29,10 +29,10 @@ RSpec.describe 'Admin Invoice Show page' do
   it 'displays the invoice information' do
     visit admin_invoice_path(@invoice_1)
     save_and_open_page
-    expect(page).to have_content("Inovice ID: #{@invoice_1.id}")
-    expect(page).to have_content("Inovice Status: #{@invoice_1.status}")
-    expect(page).to have_content("Inovice Created At: Monday, July 18, 2019")
-    expect(page).to have_content("Inovice Customer: #{@customer_1.first_name} #{@customer_1.last_name}")
+    expect(page).to have_content("Invoice ##{@invoice_1.id}")
+    expect(page).to have_content("Status: #{@invoice_1.status}")
+    expect(page).to have_content("Created on: Saturday, January 01, 2022")
+    expect(page).to have_content("#{@customer_1.first_name} #{@customer_1.last_name}")
 
   end
 end
