@@ -8,5 +8,6 @@ class InvoiceItem < ApplicationRecord
 
   def self.incomplete_inv
     where(status: %w[pending packaged])
+      .order(:created_at)
   end
 end
