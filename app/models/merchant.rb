@@ -16,13 +16,6 @@ class Merchant < ApplicationRecord
   end
 
   def unshipped_items
-    # require "pry"; binding.pry
-    # invoices.joins(:items)
-    #         .where(invoice_items: {status: 1})
-    #         .select("items.*, invoice_items.status, invoices.created_at")
-    #         .group("item.id")
-    #         # .distinct
-    #         .order("invoices.created_at")
-    invoice_items.where(status: 1).order(:created_at)
+      invoice_items.where(status: 1).order(:created_at)
   end
 end
