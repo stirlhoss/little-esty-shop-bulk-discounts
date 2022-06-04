@@ -46,7 +46,7 @@ RSpec.describe 'admin dashboard' do
       @ii_1 = @item.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 3, unit_price: 400, status: 'shipped',
                                   created_at: Time.parse('2012-03-27 14:54:09 UTC'))
       @ii_2 = @item.invoice_items.create!(invoice_id: @invoice_2.id, quantity: 5, unit_price: 400, status: 'packaged',
-                                  created_at: Time.parse('2012-03-27 14:54:09 UTC'))
+                                  created_at: Time.parse('2012-05-27 14:54:09 UTC'))
       @ii_3 = @item.invoice_items.create!(invoice_id: @invoice_3.id, quantity: 1, unit_price: 400, status: 'shipped',
                                   created_at: Time.parse('2012-03-27 14:54:09 UTC'))
       @ii_4 = @item.invoice_items.create!(invoice_id: @invoice_4.id, quantity: 7, unit_price: 400, status: 'packaged',
@@ -83,6 +83,19 @@ RSpec.describe 'admin dashboard' do
         click_link(@ii_2.id.to_s)
       end
         expect(current_path).to eq(admin_invoices_path(@ii_2.id))
+    end
+
+    it 'shows dates next to the incomplete invoices' do
+      visit admin_dashboard_path
+      within '#incomplete_invoices' do
+
+        expected_date1 = 'Tuesday, March 27 2012'
+        expected_date2 = 'Sunday, May 27 2012'
+
+        expect(page).to have_content(expected_date1)
+        expect(page).to have_content(expected_date2)
+        expect(expected_date1).to appear_before(expected_date2)
+      end
     end
   end
 end
