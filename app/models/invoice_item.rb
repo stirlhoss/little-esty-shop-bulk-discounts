@@ -6,4 +6,7 @@ class InvoiceItem < ApplicationRecord
 
   validates_presence_of :status
 
+  def self.incomplete_inv
+    where(status: %w[pending packaged])
+  end
 end
