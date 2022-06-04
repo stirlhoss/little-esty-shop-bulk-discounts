@@ -133,7 +133,7 @@ RSpec.describe 'Item Index' do
     visit merchant_items_path(merchant.id)
 
     expect(Item.most_popular_items).to eq([item_5, item_7, item_4, item_6, item_3])
-
+save_and_open_page
     within("#popular") do 
       expect("Stapler").to appear_before("Backpack")
       expect("Calculator").to appear_before("Computer")

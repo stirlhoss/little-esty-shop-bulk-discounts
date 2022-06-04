@@ -15,7 +15,12 @@ class Item < ApplicationRecord
   end
 
   def self.most_popular_items
-    joins(invoice_items: [:invoice]).where(invoices: {status: 2}).select("items.*, sum(invoice_items.quantity * invoice_items.unit_price)").group(:id).order(sum: :desc).limit(5).to_a
+    joins(invoice_items: [:invoice])
+    .where(invoices: {status: 2})
+    .select("items.*, sum(invoice_items.quantity * invoice_items.unit_price)")
+    .group(:id)
+    .order(sum: :desc)
+    .limit(5).to_a
   end
 
   def total_item_revenue
@@ -23,6 +28,12 @@ class Item < ApplicationRecord
   end 
 
   def best_day
-    invoices.joins(:invoice_items).where(invoices: {status: 2}).select('invoices.*, sum(invoice_items.unit_price * invoice_items.quantity) as revenue').group(:id).order("revenue desc", "created_at desc").first.created_at.strftime("%m/%d/%Y")
+    invoices
+    .joins(:invoice_items)
+    .where(invoices: {status: 2})
+    .select('invoices.*, sum(invoice_items.unit_price * invoice_items.quantity) as revenue')
+    .group(:id)
+    .order("revenue desc", "created_at desc")
+    .first.created_at.strftime("%m/%d/%Y")
   end
 end

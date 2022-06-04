@@ -1,6 +1,8 @@
 <%= render partial: "shared/admin_header" %>
 
-<h1 id="header"> Admin Dashboard </h1>
+<h1 id="header">
+  Admin Dashboard
+</h1>
 
 <h3 id="merchants"><%= link_to "Merchants", admin_merchants_path %></h3>
 
@@ -19,3 +21,4 @@
     <p><%= link_to "#{invoice.id}", admin_invoices_path(invoice) %></p>
 <% end %>
 </div>
+

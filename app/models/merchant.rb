@@ -1,5 +1,5 @@
 class Merchant < ApplicationRecord
-enum status: { 'Enabled' => 0, 'Disabled' => 1 }
+  enum status: { 'Enabled' => 0, 'Disabled' => 1 }
   validates_presence_of :name
   has_many :items, dependent: :destroy
   has_many :invoice_items, through: :items, dependent: :destroy
@@ -10,7 +10,7 @@ enum status: { 'Enabled' => 0, 'Disabled' => 1 }
   def fave_customers
     customers.joins(invoices: :transactions)
              .where(transactions: { result: 0 })
-             .select("customers.*, count(transactions.result) as transaction_total")
+             .select('customers.*, count(transactions.result) as transaction_total')
              .group(:id)
              .order(transaction_total: :desc)
              .distinct
