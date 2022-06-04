@@ -12,18 +12,18 @@ RSpec.describe 'Admin Merchant Index', type: :feature do
     @c1 = Customer.create!(first_name: 'Yo', last_name: 'Yoz')
     @c2 = Customer.create!(first_name: 'Hey', last_name: 'Heyz')
 
-    @i1 = Invoice.create!(customer_id: @c1.id, status: 2)
-    @i2 = Invoice.create!(customer_id: @c1.id, status: 2)
-    @i3 = Invoice.create!(customer_id: @c2.id, status: 2)
-    @i4 = Invoice.create!(customer_id: @c2.id, status: 2)
-    @i5 = Invoice.create!(customer_id: @c2.id, status: 2)
-    @i6 = Invoice.create!(customer_id: @c2.id, status: 2)
-    @i7 = Invoice.create!(customer_id: @c1.id, status: 2)
-    @i8 = Invoice.create!(customer_id: @c1.id, status: 2)
-    @i9 = Invoice.create!(customer_id: @c1.id, status: 2)
-    @i10 = Invoice.create!(customer_id: @c2.id, status: 2)
-    @i11 = Invoice.create!(customer_id: @c2.id, status: 2)
-    @i12 = Invoice.create!(customer_id: @c2.id, status: 2)
+    @i1 = Invoice.create!(customer_id: @c1.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i2 = Invoice.create!(customer_id: @c1.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i3 = Invoice.create!(customer_id: @c2.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i4 = Invoice.create!(customer_id: @c2.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i5 = Invoice.create!(customer_id: @c2.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i6 = Invoice.create!(customer_id: @c2.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i7 = Invoice.create!(customer_id: @c1.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i8 = Invoice.create!(customer_id: @c1.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i9 = Invoice.create!(customer_id: @c1.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i10 = Invoice.create!(customer_id: @c2.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i11 = Invoice.create!(customer_id: @c2.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i12 = Invoice.create!(customer_id: @c2.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
 
     @item_1 = Item.create!(name: 'Shampoo', description: 'This washes your hair', unit_price: 10, merchant_id: @m1.id)
     @item_2 = Item.create!(name: 'Conditioner', description: 'This makes your hair shiny', unit_price: 8,
@@ -51,12 +51,12 @@ RSpec.describe 'Admin Merchant Index', type: :feature do
   end
 
   it 'should display all merchants by name' do
-    expect(page).to have_content(@m1.name)
-    expect(page).to have_content(@m2.name)
-    expect(page).to have_content(@m3.name)
-    expect(page).to have_content(@m4.name)
-    expect(page).to have_content(@m5.name)
-    expect(page).to have_content(@m6.name)
+    expect(page).to have_link(@m1.name)
+    expect(page).to have_link(@m2.name)
+    expect(page).to have_link(@m3.name)
+    expect(page).to have_link(@m4.name)
+    expect(page).to have_link(@m5.name)
+    expect(page).to have_link(@m6.name)
   end
 
   it 'should allow disabling and enabling a merchant' do
@@ -101,6 +101,32 @@ RSpec.describe 'Admin Merchant Index', type: :feature do
 
     within('#disabled') do
       expect(page).to have_content('Bryces Goodies')
+    end
+  end
+
+  it 'should have a list of top 5 merchants by revenue with that metric displayed' do
+    within '#top_five_merchants' do
+      expect(page).to have_link(@m1.name)
+      expect(page).to have_link(@m2.name)
+      expect(page).to have_link(@m3.name)
+    end
+
+    within '#top_five_merchants' do
+      expect(@m1.name).to appear_before(@m3.name)
+      expect(@m3.name).to appear_before(@m2.name)
+      expect(@m2.name).to_not appear_before(@m3.name)
+    end
+  end
+
+  it 'should have a top selling day for the top 5 merchants' do
+    within "#top_day-#{@m1.id}" do
+      expect(page).to have_content('03/25/12')
+    end
+    within "#top_day-#{@m2.id}" do
+      expect(page).to have_content('03/25/12')
+    end
+    within "#top_day-#{@m3.id}" do
+      expect(page).to have_content('03/25/12')
     end
   end
 end

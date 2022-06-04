@@ -1,0 +1,14 @@
+<h1 class="position-relative mt-5">
+  <strong class="position-absolute top-99 start-50 translate-middle mt-1">Little Esty Shop</strong>
+</h1>
+
+<br>
+<br>
+<div class="row mt-5">
+  <h2 class="col-8" id="name"><%= @merchant.name %></h2>
+  <div class="btn-group col-4" role="group">
+    <p type="button" class="btn btn-outline-primary"><%= link_to "Dashboard", merchant_dashboard_index_path(@merchant.id) %></p>
+    <p type="button" class="btn btn-outline-primary"><%= link_to "My Items", merchant_items_path(@merchant.id) %></p>
+    <p type="button" class="btn btn-outline-primary"><%= link_to "My Invoices", merchant_invoices_path(@merchant.id) %></p>
+  </div>
+</div>
