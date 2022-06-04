@@ -58,17 +58,17 @@ RSpec.describe 'admin dashboard' do
       @invoice_2.transactions.create!(credit_card_number: '5654405418249632', result: 'success')
       @invoice_2.transactions.create!(credit_card_number: '5654405418249631', result: 'success')
       @invoice_3.transactions.create!(credit_card_number: '6654405418249632', result: 'success')
-      @invoice_3.transactions.create!(credit_card_number: '6654405418249631', result: 'success')
-      @invoice_3.transactions.create!(credit_card_number: '6654405418249631', result: 'success')
+      @invoice_3.transactions.create!(credit_card_number: '6654405418249631', result: 'failed')
+      @invoice_3.transactions.create!(credit_card_number: '6654405418249631', result: 'failed')
       @invoice_4.transactions.create!(credit_card_number: '6654405418249632', result: 'success')
     end
 
-    xit 'shows the top 5 customers and their order count' do
+    it 'shows the top 5 customers and their order count' do
       visit admin_dashboard_path
 
       expect(page).to have_content("#{@customer_1.first_name} #{@customer_1.last_name} 4")
       expect(page).to have_content("#{@customer_2.first_name} #{@customer_2.last_name} 2")
-      expect(page).to have_content("#{@customer_3.first_name} #{@customer_3.last_name} 3")
+      expect(page).to have_content("#{@customer_3.first_name} #{@customer_3.last_name} 1")
       expect(page).to have_content("#{@customer_4.first_name} #{@customer_4.last_name} 1")
     end
   end
