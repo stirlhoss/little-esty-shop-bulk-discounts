@@ -28,15 +28,17 @@ RSpec.describe 'Merchant Invoice page' do
 
   it 'lists each invoice id, and their ids' do
     visit admin_invoices_path
-
-    expect(page).to have_content("Invoice :##{@invoice_1.id}")
-    expect(page).to have_content("Invoice :##{@invoice_7.id}")
-    expect(page).to have_content("Invoice :##{@invoice_5.id}")
+    
+    within '#invoices' do
+      expect(page).to have_content("Invoice ##{@invoice_1.id}")
+      expect(page).to have_content("Invoice ##{@invoice_7.id}")
+      expect(page).to have_content("Invoice ##{@invoice_5.id}")
+    end
   end
 
   it 'links each invoice to its invoice show page' do
     visit admin_invoices_path
-    click_on "Invoice :##{@invoice_1.id}"
-    expect(current_path).to eq(admin_invoice_path(@invoice_1.id))
+    click_on "Invoice ##{@invoice_1.id}"
+    expect(current_path).to eq(admin_invoices_path(@invoice_1.id))
   end
 end

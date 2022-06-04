@@ -1,5 +1,8 @@
 class Admin::InvoicesController < ApplicationController
   def index
-    binding.pry
+    @invoices = Invoice.all
+  end
+
+  def show
   end
 end
