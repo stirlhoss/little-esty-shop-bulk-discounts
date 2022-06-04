@@ -62,11 +62,6 @@ RSpec.describe Customer, type: :model do
     end
 
     it 'creates a list of the top 5 customers' do
-      # binding.pry
-      # Customer.top_customers.to_a.each do |customer|
-      #   p customer.first_name
-      #   p customer.count
-      # end
 
       expect(Customer.top_customers.to_a).to eq([@customer_1, @customer_2, @customer_4, @customer_5, @customer_6])
     end
