@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Admin Invoice Index page' do
+RSpec.describe 'Admin Invoice Show page' do
   before :each do
     @merchant = Merchant.create!(name: 'Brylan')
     @item_1 = @merchant.items.create!(name: 'Pencil', unit_price: 500, description: 'Writes things.')
@@ -10,7 +10,7 @@ RSpec.describe 'Admin Invoice Index page' do
 
     @customer_1 = Customer.create!(first_name: 'Joey', last_name: 'Ondricka')
     @customer_2 = Customer.create!(first_name: 'Chael', last_name: 'Sonnen')
-    @invoice_1 = @customer_1.invoices.create!(status: 'completed')
+    @invoice_1 = @customer_1.invoices.create!(status: 'completed', created_at: 'Sat, 1 Jan 2022 21:20:02 UTC +00:00')
     @invoice_7 = @customer_1.invoices.create!(status: 'completed')
     @invoice_5 = @customer_2.invoices.create!(status: 'completed')
     @item_1.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 3, unit_price: 400, status: 'packaged',
@@ -26,19 +26,13 @@ RSpec.describe 'Admin Invoice Index page' do
     @invoice_1.transactions.create!(credit_card_number: '4654405418249635', result: 'success')
   end
 
-  it 'lists each invoice id, and their ids' do
-    visit admin_invoices_path
+  it 'displays the invoice information' do
+    visit admin_invoice_path(@invoice_1)
+    save_and_open_page
+    expect(page).to have_content("Invoice ##{@invoice_1.id}")
+    expect(page).to have_content("Status: #{@invoice_1.status}")
+    expect(page).to have_content("Created on: Saturday, January 01, 2022")
+    expect(page).to have_content("#{@customer_1.first_name} #{@customer_1.last_name}")
 
-    within '#invoices' do
-      expect(page).to have_content("Invoice ##{@invoice_1.id}")
-      expect(page).to have_content("Invoice ##{@invoice_7.id}")
-      expect(page).to have_content("Invoice ##{@invoice_5.id}")
-    end
-  end
-
-  it 'links each invoice to its invoice show page' do
-    visit admin_invoices_path
-    click_on "Invoice ##{@invoice_1.id}"
-    expect(current_path).to eq(admin_invoices_path(@invoice_1.id))
   end
 end
