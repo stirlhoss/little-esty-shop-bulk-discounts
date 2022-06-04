@@ -30,6 +30,6 @@
     <%= form.label :status, "Status:" %>
     <%= form.select :status, options_for_select(["pending", "packaged", "shipped"], selected: "#{invoice_item.status}")%>
     <%= form.submit "Update Item Status" %>
+  </div>
   <% end %>
-</div>
 <% end %>
