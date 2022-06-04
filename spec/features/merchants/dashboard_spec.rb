@@ -2,11 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Merchant Dashboard Index', type: :feature do
   before :each do
-    # InvoiceItem.destroy_all
-    # Transaction.destroy_all
-    # Invoice.destroy_all
-    # Customer.destroy_all
-    # Merchant.destroy_all
+
     @merchant = Merchant.create!(name: 'Saba')
     @item_1 = @merchant.items.create!(name: 'Pencil', unit_price: 4, description: 'Writes things.')
     @item_2 = @merchant.items.create!(name: 'Pen', unit_price: 5, description: 'Writes things, but dark.')
@@ -116,6 +112,17 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
       expect(page).to have_content(@customer_6.first_name)
       expect(page).to have_content(@customer_6.last_name)
       expect(page).to have_content(1)
+    end
+  end
+
+  it 'should display unshipped items' do
+    before :each do
+      
+    end
+    within "#id-#{@ii2.id}" do
+      expect(page).to have_content(@item_2.name)
+      expect(page).to have_content(@item_2.name)
+      expect(page).to have_content(@item_2.name)
     end
   end
 end

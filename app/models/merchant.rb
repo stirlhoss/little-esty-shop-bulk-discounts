@@ -13,14 +13,16 @@ class Merchant < ApplicationRecord
              .group(:id)
              .order(transaction_total: :desc)
              .limit(5).to_a
-             # require "pry"; binding.pry
   end
 
   def unshipped_items
-    invoices.joins(:items)
-            .select("items.*, invoice_items, invoices.created_at")
-            .where(invoice_items: {status: 1})
-            .distinct
-            .order("invoices.created_at")
+    # require "pry"; binding.pry
+    # invoices.joins(:items)
+    #         .where(invoice_items: {status: 1})
+    #         .select("items.*, invoice_items.status, invoices.created_at")
+    #         .group("item.id")
+    #         # .distinct
+    #         .order("invoices.created_at")
+    invoice_items.where(status: 1).order(:created_at)
   end
 end

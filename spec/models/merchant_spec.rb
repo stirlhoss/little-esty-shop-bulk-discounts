@@ -114,10 +114,6 @@ RSpec.describe Merchant, type: :model do
       @t6 = Transaction.create!(credit_card_number: 102_938, result: 0, invoice_id: @i1.id)
     end
 
-    # it '#top_day' do
-    #   expect(@m3.best_day.created_at).to eq(@i3.created_at)
-    # end
-
     it '#fave_customers' do
       actual = @m3.fave_customers.map do |customer|
         customer[:first_name]
@@ -126,8 +122,8 @@ RSpec.describe Merchant, type: :model do
     end
 
     it "#unshipped_items" do
-      actual = @m2.unshipped_items.map do |item|
-        item[:name]
+      actual = @m2.unshipped_items.map do |invoice|
+        invoice.item[:name]
       end
       expect(actual).to eq([@item_2.name])
     end
