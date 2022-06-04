@@ -71,5 +71,16 @@ RSpec.describe 'admin dashboard' do
       expect(page).to have_content("#{@customer_3.first_name} #{@customer_3.last_name} 3")
       expect(page).to have_content("#{@customer_4.first_name} #{@customer_4.last_name} 1")
     end
+
+    it 'shows a section of incomplete invoices' do
+      visit admin_dashboard_path
+      within '#incomplete invoices' do
+        expect(page).to have_link(@invoice_4.id.to_s)
+
+        click_link(@invoice_4.id.to_s)
+        # admin invoice show path does not exist yet
+        expect(current_path).to eq(admin_invoice_show_path)
+      end
+    end
   end
 end
