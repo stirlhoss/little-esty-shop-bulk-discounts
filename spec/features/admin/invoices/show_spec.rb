@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Admin Invoice Index page' do
+RSpec.describe 'Admin Invoice Show page' do
   before :each do
     @merchant = Merchant.create!(name: 'Brylan')
     @item_1 = @merchant.items.create!(name: 'Pencil', unit_price: 500, description: 'Writes things.')
@@ -26,19 +26,13 @@ RSpec.describe 'Admin Invoice Index page' do
     @invoice_1.transactions.create!(credit_card_number: '4654405418249635', result: 'success')
   end
 
-  it 'lists each invoice id, and their ids' do
-    visit admin_invoices_path
+  it 'displays the invoice information' do
+    visit admin_invoice_path(@invoice_1)
+    save_and_open_page
+    expect(page).to have_content("Inovice ID: #{@invoice_1.id}")
+    expect(page).to have_content("Inovice Status: #{@invoice_1.status}")
+    expect(page).to have_content("Inovice Created At: Monday, July 18, 2019")
+    expect(page).to have_content("Inovice Customer: #{@customer_1.first_name} #{@customer_1.last_name}")
 
-    within '#invoices' do
-      expect(page).to have_content("Invoice ##{@invoice_1.id}")
-      expect(page).to have_content("Invoice ##{@invoice_7.id}")
-      expect(page).to have_content("Invoice ##{@invoice_5.id}")
-    end
-  end
-
-  it 'links each invoice to its invoice show page' do
-    visit admin_invoices_path
-    click_on "Invoice ##{@invoice_1.id}"
-    expect(current_path).to eq(admin_invoices_path(@invoice_1.id))
   end
 end
