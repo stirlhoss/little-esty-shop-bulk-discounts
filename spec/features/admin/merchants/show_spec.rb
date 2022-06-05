@@ -50,7 +50,8 @@ RSpec.describe 'Admin Merchant Show', type: :feature do
 
   it 'should have links to it from admin/index' do
     visit admin_merchants_path
-    within '#disabled' do
+
+    within "#disabled-#{@m1.id}" do
       click_on @m1.name
     end
 
