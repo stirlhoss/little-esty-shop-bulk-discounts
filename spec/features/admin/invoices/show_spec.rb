@@ -55,4 +55,20 @@ RSpec.describe 'Admin Invoice Show page' do
       expect(page).to have_content("Total Revenue: $#{@invoice_1.total_revenue}")
     end
   end
+
+  it 'can update the status of a invoice item' do
+    visit admin_invoice_path(@invoice_1)
+
+    within "#invoice-items-#{@invoice_item_1.id}" do
+      expect(page).to have_content("Invoice Item Status: packaged")
+      select('shipped')
+      click_on('Update Item Status')
+    end
+
+    expect(current_path).to eq(visit admin_invoice_path(@invoice_1))
+
+    within "#invoice-items-#{@invoice_item_1.id}" do
+      expect(page).to have_content("Invoice Item Status: shipped")
+    end
+  end
 end
