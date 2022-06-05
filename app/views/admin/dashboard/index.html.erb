@@ -1,5 +1,24 @@
-<h1 id="header"> Admin Dashboard </h1>
+<%= render partial: "shared/admin_header" %>
 
-<h3 id="merchants"><%= link_to "Merchants", '/admin/merchants' %></h3>
+<h1 id="header">
+  Admin Dashboard
+</h1>
 
-<h3 id="invoices"><%= link_to "Invoices", '/admin/invoices' %></h3>
+<h3 id="merchants"><%= link_to "Merchants", admin_merchants_path %></h3>
+
+<h3 id="invoices"><%= link_to "Invoices", admin_invoices_path %></h3>
+
+<div id="top_customers">
+<h2>Top Customers</h2>
+<% @customers_top_5.each do |customer|  %>
+    <p><%= "#{customer.first_name} #{customer.last_name} #{customer.transaction_count}" %></p>
+<% end %>
+</div>
+
+<div id="incomplete_invoices">
+<h2>Incomplete Invoices</h2>
+<% @incomplete_invs.each do |invoice|  %>
+    <p><%= link_to "#{invoice.id}", admin_invoices_path(invoice) %><%= invoice.created_at.strftime(" %A, %B %e %Y") %></p>
+<% end %>
+</div>
+

@@ -46,6 +46,7 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
     @invoice_9.transactions.create!(credit_card_number: '6654405418249632', result: 'success')
 
     @customer_6 = Customer.create!(first_name: 'Eileen', last_name: 'Garcia')
+
     @invoice_14 = @customer_6.invoices.create(status: "in progress",
                                                   created_at: '2012-11-26 09:54:09 UTC')
     @item_2.invoice_items.create!(invoice_id: @invoice_14.id, quantity: 4, unit_price: 5, status: 'pending')
@@ -55,19 +56,21 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
     @customer_7 = Customer.create!(first_name: 'Smark', last_name: 'Mrains')
     @invoice_13 = @customer_7.invoices.create(status: "in progress",
                                                   created_at: '2012-03-30 09:54:09 UTC')
+
     @item_2.invoice_items.create!(invoice_id: @invoice_13.id, quantity: 4, unit_price: 5, status: 'pending')
     @invoice_13.transactions.create!(credit_card_number: '6654405418249644', result: 'failed')
   end
 
   it 'should display the name of the merchant' do
     visit merchant_dashboard_index_path(@merchant.id)
-# save_and_open_page
+
     within "#name" do
       expect(page).to have_content("Saba")
     end
   end
 
   it 'should have links to merchant items index and merchant invoices index' do
+
     visit merchant_dashboard_index_path(@merchant.id)
 
     expect(page).to have_link("My Items")
@@ -76,7 +79,7 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
 
   it 'should display top 5 customers with number of successful transactions' do
     visit merchant_dashboard_index_path(@merchant.id)
-# save_and_open_page
+
     within "#id-#{@customer_4.id}" do
       expect(page).to have_content(@customer_4.first_name)
       expect(page).to have_content(@customer_4.last_name)
@@ -87,6 +90,7 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
     within("#id-#{@customer_1.id}") do
       expect(page).to have_content(@customer_1.first_name)
       expect(page).to have_content(@customer_1.last_name)
+      expect(page).to_not have_content(@customer_7.first_name)
       expect(page).to have_content(5)
       expect(@customer_1.first_name).to appear_before(@customer_3.first_name)
       expect(@customer_3.first_name).to_not appear_before(@customer_1.first_name)
@@ -95,6 +99,7 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
     within "#id-#{@customer_2.id}" do
       expect(page).to have_content(@customer_2.first_name)
       expect(page).to have_content(@customer_2.last_name)
+      expect(page).to_not have_content(@customer_7.last_name)
       expect(page).to have_content(4)
     end
 

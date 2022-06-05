@@ -3,27 +3,27 @@ require 'rails_helper'
 RSpec.describe 'Admin Merchant Index', type: :feature do
   before :each do
     @m1 = Merchant.create!(name: 'Merchant 1')
-    @m2 = Merchant.create!(name: 'Merchant 2')
+    @m2 = Merchant.create!(name: 'Merchant 2', status: 0)
     @m3 = Merchant.create!(name: 'Merchant 3')
-    @m4 = Merchant.create!(name: 'Merchant 4')
-    @m5 = Merchant.create!(name: 'Merchant 5')
+    @m4 = Merchant.create!(name: 'Merchant 4', status: 0)
+    @m5 = Merchant.create!(name: 'Merchant 5', status: 0)
     @m6 = Merchant.create!(name: 'Merchant 6')
 
     @c1 = Customer.create!(first_name: 'Yo', last_name: 'Yoz')
     @c2 = Customer.create!(first_name: 'Hey', last_name: 'Heyz')
 
-    @i1 = Invoice.create!(customer_id: @c1.id, status: 2)
-    @i2 = Invoice.create!(customer_id: @c1.id, status: 2)
-    @i3 = Invoice.create!(customer_id: @c2.id, status: 2)
-    @i4 = Invoice.create!(customer_id: @c2.id, status: 2)
-    @i5 = Invoice.create!(customer_id: @c2.id, status: 2)
-    @i6 = Invoice.create!(customer_id: @c2.id, status: 2)
-    @i7 = Invoice.create!(customer_id: @c1.id, status: 2)
-    @i8 = Invoice.create!(customer_id: @c1.id, status: 2)
-    @i9 = Invoice.create!(customer_id: @c1.id, status: 2)
-    @i10 = Invoice.create!(customer_id: @c2.id, status: 2)
-    @i11 = Invoice.create!(customer_id: @c2.id, status: 2)
-    @i12 = Invoice.create!(customer_id: @c2.id, status: 2)
+    @i1 = Invoice.create!(customer_id: @c1.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i2 = Invoice.create!(customer_id: @c1.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i3 = Invoice.create!(customer_id: @c2.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i4 = Invoice.create!(customer_id: @c2.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i5 = Invoice.create!(customer_id: @c2.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i6 = Invoice.create!(customer_id: @c2.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i7 = Invoice.create!(customer_id: @c1.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i8 = Invoice.create!(customer_id: @c1.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i9 = Invoice.create!(customer_id: @c1.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i10 = Invoice.create!(customer_id: @c2.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i11 = Invoice.create!(customer_id: @c2.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
+    @i12 = Invoice.create!(customer_id: @c2.id, status: 2, created_at: Time.parse('2012-03-25 14:54:09 UTC'))
 
     @item_1 = Item.create!(name: 'Shampoo', description: 'This washes your hair', unit_price: 10, merchant_id: @m1.id)
     @item_2 = Item.create!(name: 'Conditioner', description: 'This makes your hair shiny', unit_price: 8,
@@ -51,11 +51,82 @@ RSpec.describe 'Admin Merchant Index', type: :feature do
   end
 
   it 'should display all merchants by name' do
-    expect(page).to have_content(@m1.name)
-    expect(page).to have_content(@m2.name)
-    expect(page).to have_content(@m3.name)
-    expect(page).to have_content(@m4.name)
-    expect(page).to have_content(@m5.name)
-    expect(page).to have_content(@m6.name)
+    expect(page).to have_link(@m1.name)
+    expect(page).to have_link(@m2.name)
+    expect(page).to have_link(@m3.name)
+    expect(page).to have_link(@m4.name)
+    expect(page).to have_link(@m5.name)
+    expect(page).to have_link(@m6.name)
+  end
+
+  it 'should allow disabling and enabling a merchant' do
+    within "#disabled-#{@m1.id}" do
+      click_on 'Enable'
+    end
+
+    expect(current_path).to eq(admin_merchants_path)
+
+    within "#enabled-#{@m1.id}" do
+      expect(page).to have_content(@m1.name)
+      expect(page).to have_button('Disable')
+    end
+  end
+
+  it 'should have two sections for Enabled/Disabled Merchants' do
+    within '#disabled' do
+      within "#disabled-#{@m1.id}" do
+        click_on 'Enable'
+      end
+    end
+
+    within '#enabled' do
+      within "#enabled-#{@m1.id}" do
+        expect(page).to have_content(@m1.name)
+        expect(page).to have_button('Disable')
+      end
+    end
+  end
+
+  it 'should have a link to a working new merchant form' do
+    expect(page).to have_content('Create New Merchant')
+
+    click_on 'Create New Merchant'
+
+    expect(current_path).to eq(new_admin_merchant_path)
+
+    fill_in :name, with: 'Bryces Goodies'
+    click_button 'Save'
+
+    expect(current_path).to eq(admin_merchants_path)
+
+    within('#disabled') do
+      expect(page).to have_content('Bryces Goodies')
+    end
+  end
+
+  it 'should have a list of top 5 merchants by revenue with that metric displayed' do
+    within '#top_five_merchants' do
+      expect(page).to have_link(@m1.name)
+      expect(page).to have_link(@m2.name)
+      expect(page).to have_link(@m3.name)
+    end
+
+    within '#top_five_merchants' do
+      expect(@m1.name).to appear_before(@m3.name)
+      expect(@m3.name).to appear_before(@m2.name)
+      expect(@m2.name).to_not appear_before(@m3.name)
+    end
+  end
+
+  it 'should have a top selling day for the top 5 merchants' do
+    within "#top_day-#{@m1.id}" do
+      expect(page).to have_content('03/25/12')
+    end
+    within "#top_day-#{@m2.id}" do
+      expect(page).to have_content('03/25/12')
+    end
+    within "#top_day-#{@m3.id}" do
+      expect(page).to have_content('03/25/12')
+    end
   end
 end

@@ -1,9 +1,43 @@
-<h1>Little Esty Shop</h1>
+<%= render partial: "shared/admin_header" %>
 
-<div id="merchants">
+<div id="all_merchants">
+  <div id="enabled">
+    <strong>Enabled Merchants</strong>
+    <% @merchants.each do |merchant| %>
+      <div id="enabled-<%= merchant.id %>">
+        <% if merchant.status == "Enabled" %>
+          <%= link_to merchant.name, admin_merchant_path(merchant) %>
+          <%= button_to 'Disable', admin_merchant_path(merchant), method: :patch, params: { merchant: {status: "Disabled"} } %>
+        </div>
+      <%end%>
+    <%end%>
+  </div>
+  <br>
+  <div id="disabled">
+    <strong>Disabled Merchants</strong>
+    <% @merchants.each do |merchant| %>
+      <div id="disabled-<%= merchant.id %>">
+        <% if merchant.status == "Disabled" %>
+          <%= link_to merchant.name, admin_merchant_path(merchant) %>
+          <%= button_to 'Enable', admin_merchant_path(merchant), method: :patch, params: { merchant: {status: "Enabled"} } %>
+        </div>
+      <%end%>
+    <%end%>
+  </div>
+</div>
 
-  <% @merchants.each do |merchant| %>
-    <p><%= link_to merchant.name, admin_merchant_path(merchant) %></p>
+<%= link_to "Create New Merchant", new_admin_merchant_path %>
+
+<div id="top_five_merchants">
+  <h3>Top Merchants</h3>
+  <% @merchants.top_five_merchants.each_with_index do |merchant, index| %>
+    <p><%= index+1 %>.<%= link_to merchant.name, admin_merchant_path(merchant)%>
+      - $<%= merchant.total_revenue %>
+      in sales</p>
+    <p id='top_day-<%= merchant.id %>'>Top day for
+      <%= merchant.name %>
+      was
+      <%= merchant.best_day.created_at.strftime("%m/%d/%y") %></p>
   <% end %>
 
 </div>
