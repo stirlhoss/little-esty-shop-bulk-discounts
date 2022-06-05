@@ -1,9 +1,9 @@
-
 <%= render partial: "shared/admin_header" %>
-<h1>Invoices</h1>
+<hr>
+<h3 class="d-flex justify-content-center">Invoices</h3>
 
 <div id="invoices">
   <% @invoices.each do |invoice| %>
-    <%= link_to "Invoice ##{invoice.id}", admin_invoices_path(invoice) %><br>
+    <%= link_to "Invoice ##{invoice.id}", admin_invoice_path(invoice) %><br>
   <% end %>
 </div>
