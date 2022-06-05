@@ -81,12 +81,15 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
       expect(page).to have_content(@customer_4.first_name)
       expect(page).to have_content(@customer_4.last_name)
       expect(page).to have_content(6)
+      expect(page).to_not have_content(@customer_7.first_name)
     end
 
     within("#id-#{@customer_1.id}") do
       expect(page).to have_content(@customer_1.first_name)
       expect(page).to have_content(@customer_1.last_name)
       expect(page).to have_content(5)
+      expect(@customer_1.first_name).to appear_before(@customer_3.first_name)
+      expect(@customer_3.first_name).to_not appear_before(@customer_1.first_name)
     end
 
     within "#id-#{@customer_2.id}" do
@@ -110,17 +113,20 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
 
   it 'should display unshipped items' do
     visit merchant_dashboard_index_path(@merchant.id)
-
+save_and_open_page
     within "#id-0" do
         expect(page).to have_content(@item_2.name)
         expect(page).to have_link(@invoice_9.id)
         expect(page).to have_content("Thursday, Jan 26 2012")
+        expect(page).to_not have_content(@item_3.name)
     end
 
     within "#id-1" do
         expect(page).to have_content(@item_1.name)
         expect(page).to have_link(@invoice_4.id)
         expect(page).to have_content("Monday, Mar 26 2012")
+        expect(page).to_not have_content("Tuesday, Mar 27 2012")
+        expect(@item_1.name).to_not appear_before(@item_2.name)
 
         click_link "#{@invoice_4.id}"
         expect(current_path).to eq(merchant_invoice_path(@merchant, @invoice_4))
