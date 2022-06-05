@@ -61,10 +61,6 @@ RSpec.describe Merchant, type: :model do
       @t5 = Transaction.create!(credit_card_number: 102_938, result: 1, invoice_id: @i6.id)
       @t6 = Transaction.create!(credit_card_number: 102_938, result: 1, invoice_id: @i1.id)
     end
-
-    # it '#top_five_merchants' do
-    #   expect(Merchant.top_five_merchants.to_a).to eq([@m1, @m3, @m2])
-    # end
 =======
   it "#unshipped_items" do
     expect(@merchant.unshipped_items.to_a).to eq([@invoice_4, @invoice_9])

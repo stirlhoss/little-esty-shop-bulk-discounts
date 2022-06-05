@@ -110,8 +110,7 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
 
   it 'should display unshipped items' do
     visit merchant_dashboard_index_path(@merchant.id)
-save_and_open_page
-# require "pry"; binding.pry
+
     within "#id-0" do
         expect(page).to have_content(@item_2.name)
         expect(page).to have_link(@invoice_9.id)
