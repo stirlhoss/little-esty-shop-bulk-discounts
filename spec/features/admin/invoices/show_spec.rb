@@ -10,7 +10,7 @@ RSpec.describe 'Admin Invoice Show page' do
 
     @customer_1 = Customer.create!(first_name: 'Joey', last_name: 'Ondricka')
     @customer_2 = Customer.create!(first_name: 'Chael', last_name: 'Sonnen')
-    @invoice_1 = @customer_1.invoices.create!(status: 'completed', created_at: 'Sat, 1 Jan 2022 21:20:02 UTC +00:00')
+    @invoice_1 = @customer_1.invoices.create!(status: 'in progress', created_at: 'Sat, 1 Jan 2022 21:20:02 UTC +00:00')
     @invoice_7 = @customer_1.invoices.create!(status: 'completed')
     @invoice_5 = @customer_2.invoices.create!(status: 'completed')
     @invoice_item_1 = @item_1.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 3, unit_price: 400, status: 'packaged',
@@ -59,16 +59,13 @@ RSpec.describe 'Admin Invoice Show page' do
   it 'can update the status of a invoice item' do
     visit admin_invoice_path(@invoice_1)
 
-    within "#invoice-items-#{@invoice_item_1.id}" do
-      expect(page).to have_content("Invoice Item Status: packaged")
-      select('shipped')
-      click_on('Update Item Status')
-    end
+    expect(page).to have_content("Invoice Item Status: packaged")
 
-    expect(current_path).to eq(visit admin_invoice_path(@invoice_1))
+    select('completed')
+    click_on('Update Invoice Status')
 
-    within "#invoice-items-#{@invoice_item_1.id}" do
-      expect(page).to have_content("Invoice Item Status: shipped")
-    end
+    expect(current_path).to eq(admin_invoice_path(@invoice_1))
+    save_and_open_page
+    expect(page).to have_content("Status: completed")
   end
 end
