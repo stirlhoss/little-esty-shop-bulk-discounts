@@ -17,6 +17,10 @@ class Merchant < ApplicationRecord
              .limit(5)
   end
 
+  def unshipped_items
+    invoice_items.joins(:invoice).where(status: 1).order("invoices.created_at")
+  end
+
   def self.top_five_merchants
     joins(invoices: %i[transactions invoice_items])
       .where(invoices: { status: 2 })

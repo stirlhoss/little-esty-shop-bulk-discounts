@@ -3,7 +3,6 @@ class InvoiceItem < ApplicationRecord
 
   belongs_to :invoice
   belongs_to :item
-
   validates_presence_of :status
 
   def self.incomplete_inv

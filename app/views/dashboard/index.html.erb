@@ -5,9 +5,16 @@
 </h5>
 <% @merchant.fave_customers.each do |customer| %>
   <div id="id-<%= customer.id %>">
-    <li>
-      <%= customer.first_name %>
-      <%= customer.last_name %>
-      <%= customer.transaction_total %></li>
-  <% end %>
-</div>
+    <li> <%= customer.first_name %> <%= customer.last_name %>
+              <%= customer.transaction_total %></li>
+    <% end %>
+    </div>
+
+<h5> Items Ready to Ship </h5>
+<% @merchant.unshipped_items.each_with_index do |invoice_item, index| %>
+  <div id="id-<%= index %>">
+    <li> <%= invoice_item.item.name %> <%= link_to invoice_item.invoice.id, "/merchants/#{@merchant.id}/invoices/#{invoice_item.invoice.id}" %>
+    <li> <%= invoice_item.invoice.created_at.strftime("%A, %b %d %Y") %>
+  </div>
+    <% end %>
+
