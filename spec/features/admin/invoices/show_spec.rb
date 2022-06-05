@@ -65,7 +65,7 @@ RSpec.describe 'Admin Invoice Show page' do
     click_on('Update Invoice Status')
 
     expect(current_path).to eq(admin_invoice_path(@invoice_1))
-    save_and_open_page
+    
     expect(page).to have_content("Status: completed")
   end
 end
