@@ -14,9 +14,9 @@ RSpec.describe 'Admin Invoice Show page' do
     @invoice_7 = @customer_1.invoices.create!(status: 'completed')
     @invoice_5 = @customer_2.invoices.create!(status: 'completed')
     @invoice_item_1 = @item_1.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 3, unit_price: 400, status: 'packaged',
-                                  created_at: Time.parse('2012-03-27 14:54:09 UTC'))
+                                                    created_at: Time.parse('2012-03-27 14:54:09 UTC'))
     @invoice_item_2 = @item_2.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 5, unit_price: 400, status: 'packaged',
-                                  created_at: Time.parse('2012-03-28 14:54:09 UTC'))
+                                                    created_at: Time.parse('2012-03-28 14:54:09 UTC'))
 
     @invoice_1.transactions.create!(credit_card_number: '4654405418249632', result: 'success')
     @invoice_1.transactions.create!(credit_card_number: '4654405418249631', result: 'success')
@@ -33,9 +33,10 @@ RSpec.describe 'Admin Invoice Show page' do
       expect(page).to have_content("Invoice ##{@invoice_1.id}")
     end
     within "#invoice-#{@invoice_1.id}" do
-      expect(page).to have_content("Status: #{@invoice_1.status}")
-      expect(page).to have_content("Created on: Saturday, January 01, 2022")
+      expect(page).to have_content('Created on: Saturday, January 01, 2022')
       expect(page).to have_content("#{@customer_1.first_name} #{@customer_1.last_name}")
+      current = find_field('status').value
+      expect(current).to eq('in progress')
     end
   end
 
@@ -49,7 +50,7 @@ RSpec.describe 'Admin Invoice Show page' do
     end
   end
 
-  it "displays the ammount of total revenue made by the invoice" do
+  it 'displays the ammount of total revenue made by the invoice' do
     visit admin_invoice_path(@invoice_1)
     within "#invoice-items-#{@invoice_item_1.id}" do
       expect(page).to have_content("Total Revenue: $#{@invoice_1.total_revenue}")
@@ -59,13 +60,15 @@ RSpec.describe 'Admin Invoice Show page' do
   it 'can update the status of a invoice item' do
     visit admin_invoice_path(@invoice_1)
 
-    expect(page).to have_content("Invoice Item Status: packaged")
+    current = find_field('status').value
+    expect(current).to eq('in progress')
 
     select('completed')
     click_on('Update Invoice Status')
 
     expect(current_path).to eq(admin_invoice_path(@invoice_1))
-    
-    expect(page).to have_content("Status: completed")
+
+    updated = find_field('status').value
+    expect(updated).to eq('completed')
   end
 end
