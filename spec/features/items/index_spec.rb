@@ -96,7 +96,9 @@ RSpec.describe 'Item Index' do
     within('#enabled-0') do
       click_button 'Disable Item'
     end
+
     nu_changed_item = Item.last
+    
     expect(current_path).to eq(merchant_items_path(merchant_1.id))
     expect('Disabled Items').to appear_before(nu_changed_item.name)
     expect(nu_changed_item.status).to eq('Disabled')
