@@ -47,6 +47,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'simplecov'
   gem 'solargraph'
+  gem 'webmock'
 end
 
 group :development do

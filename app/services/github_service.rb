@@ -1,11 +1,19 @@
-class GithubService
-  def self.connection
-    url = "https://api.github.com/repos/bwbolt/little-esty-shop"
-    Faraday.new(url: url)
+class GithubService < BaseService
+  def self.get_repo_data
+    response = conn('https://api.github.com').get('/repos/bwbolt/little-esty-shop')
+    get_json(response)
   end
 
-  def self.find_repo
-    response = connection.get
+  # def self.get_pull_data
+  #   response = conn('https://api.github.com').get('/repos/bwbolt/little-esty-shop/pulls')
+  #   get_json(response)
+  # end
+
+  def self.conn(url)
+    Faraday.new(url)
+  end
+
+  def self.get_json(response)
     JSON.parse(response.body, symbolize_names: true)
   end
 end

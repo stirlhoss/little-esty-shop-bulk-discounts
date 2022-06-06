@@ -1,4 +1,4 @@
-class Repo
+class Repository
   attr_reader :name
 
   def initialize(data)
