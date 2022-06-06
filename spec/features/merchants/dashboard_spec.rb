@@ -116,11 +116,12 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
 
   it 'should display unshipped items' do
     visit merchant_dashboard_index_path(@merchant.id)
-    within '#id-0' do
-      expect(page).to have_content(@item_2.name)
-      expect(page).to have_link(@invoice_9.id)
-      expect(page).to have_content('Thursday, Jan 26 2012')
-      expect(page).to_not have_content(@item_3.name)
+
+    within "#id-0" do
+        expect(page).to have_content(@item_2.name)
+        expect(page).to have_link(@invoice_9.id)
+        expect(page).to have_content("Thursday, Jan 26 2012")
+        expect(page).to_not have_content(@item_3.name)
     end
 
     within '#id-1' do
@@ -133,5 +134,11 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
       click_link @invoice_4.id.to_s
       expect(current_path).to eq(merchant_invoice_path(@merchant, @invoice_4))
     end
+  end
+
+  it 'has repo name from gitgub' do
+    visit merchant_dashboard_index_path(@merchant.id)
+
+    expect(page).to have_content("Little Esty Shop")
   end
 end
