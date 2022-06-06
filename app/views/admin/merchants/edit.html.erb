@@ -1,6 +1,8 @@
 <%= render partial: "shared/admin_header" %>
+<hr>
 
 <%= form_with model: [:admin, @merchant] do |form| %>
-<%= form.text_field :name %><br>
+<%= form.label :name, "Enter New Name:" %>
+<%= form.text_field :name %>
 <%= form.submit %>
 <% end %>
