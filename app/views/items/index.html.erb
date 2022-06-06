@@ -47,8 +47,12 @@
     <% @items.most_popular_items.each_with_index do |item, index| %>
       <div id="popular-<%= index %>">
         <p><%= index + 1 %>.
-          <%= link_to item.name, merchant_item_path(@merchant.id, item.id)%>- $<%= item.total_item_revenue %> in sales</p>
-        <p>Top day for <%= item.name %> was <%= item.best_day %></p>
+          <%= link_to item.name, merchant_item_path(@merchant.id, item.id)%>- $<%= item.total_item_revenue %>
+          in sales</p>
+        <p>Top day for
+          <%= item.name %>
+          was
+          <%= item.best_day %></p>
       </div>
     <%end%>
   </div>
