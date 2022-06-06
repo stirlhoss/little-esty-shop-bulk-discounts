@@ -154,7 +154,7 @@ RSpec.describe 'Item Index' do
     visit merchant_items_path(merchant.id)
 
     expect(Item.most_popular_items).to eq([item_5, item_7, item_4, item_6, item_3])
-    
+
     within('#popular') do
       expect('Stapler').to appear_before('Backpack')
       expect('Calculator').to appear_before('Computer')
@@ -179,6 +179,7 @@ RSpec.describe 'Item Index' do
     within('#popular') do
       click_link 'Pencil'
     end
+    
     expect(current_path).to eq(merchant_item_path(merchant.id, item_1.id))
   end
 
