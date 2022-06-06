@@ -17,9 +17,10 @@ class Admin::MerchantsController < ApplicationController
     merchant.save
     if merchant_params.include?(:status)
       redirect_to admin_merchants_path
+      flash[:alert] = "#{merchant.name} Status Updated To #{merchant.status}"
     else
       redirect_to admin_merchant_path(merchant)
-      flash[:alert] = 'Information Successfully Updated'
+      flash[:alert] = "#{merchant.name} Information Successfully Updated"
     end
   end
 
@@ -27,6 +28,7 @@ class Admin::MerchantsController < ApplicationController
     Merchant.create!(name: params[:name])
 
     redirect_to admin_merchants_path
+    flash[:alert] = 'Merchant Created'
   end
 
   private
