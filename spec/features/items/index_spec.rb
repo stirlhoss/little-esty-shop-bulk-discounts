@@ -8,7 +8,6 @@ RSpec.describe 'Item Index' do
                                       unit_price: 4999)
     item_3 = merchant_1.items.create!(name: 'Silver Ring', description: 'A simple, classic, and versatile piece',
                                       unit_price: 2999)
-
     merchant_2 = Merchant.create(name: "Antique's by Annie")
     item_4 = merchant_2.items.create!(name: "1920's Driving Gloves", description: 'Leather', unit_price: 2999)
 
