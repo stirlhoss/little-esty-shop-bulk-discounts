@@ -43,13 +43,13 @@ RSpec.describe 'Item Index' do
 
     visit merchant_items_path(merchant_1.id)
 
-    within('#disabled-0') do
+    within('#disabled') do
       expect(page).to have_content(item_2.name)
       expect(page).to have_content(item_3.name)
       expect(page).to_not have_content(item_1.name)
     end
 
-    within('#enabled-0') do
+    within('#enabled') do
       expect(page).to have_content(item_1.name)
       expect(page).to_not have_content(item_3.name)
     end
@@ -69,11 +69,18 @@ RSpec.describe 'Item Index' do
     within('#disabled-1') do
       click_button 'Enable Item'
     end
-    changed_item = Item.last
 
     expect(current_path).to eq(merchant_items_path(merchant_1.id))
-    expect(changed_item.name).to appear_before('Disabled Items')
-    expect(changed_item.status).to eq('Enabled')
+
+    within('#disabled') do
+      expect(page).to_not have_content(item_2.name)
+      expect(page).to have_content(item_3.name)
+    end
+
+    within('#enabled') do
+      expect(page).to have_content(item_1.name)
+      expect(page).to have_content(item_2.name)
+    end
   end
 
   it 'has a button to change item status to Disabled' do
