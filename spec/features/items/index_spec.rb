@@ -98,7 +98,7 @@ RSpec.describe 'Item Index' do
     end
 
     nu_changed_item = Item.last
-    
+
     expect(current_path).to eq(merchant_items_path(merchant_1.id))
     expect('Disabled Items').to appear_before(nu_changed_item.name)
     expect(nu_changed_item.status).to eq('Disabled')
@@ -154,6 +154,7 @@ RSpec.describe 'Item Index' do
     visit merchant_items_path(merchant.id)
 
     expect(Item.most_popular_items).to eq([item_5, item_7, item_4, item_6, item_3])
+    
     within('#popular') do
       expect('Stapler').to appear_before('Backpack')
       expect('Calculator').to appear_before('Computer')
