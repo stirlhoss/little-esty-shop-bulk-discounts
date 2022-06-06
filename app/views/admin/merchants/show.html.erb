@@ -1,5 +1,5 @@
 <%= render partial: "shared/admin_header" %>
-
-<h1 id="name"><%= @merchant.name %></h1>
+<hr>
+<h3 id="name" class="d-flex justify-content-center"><%= @merchant.name %></h3>
 
 <%= link_to "Update Merchant Information", edit_admin_merchant_path(@merchant)%>

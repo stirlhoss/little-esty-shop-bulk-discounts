@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
 
   def update
     item = Item.find(params[:id])
-    Item.update(item_params)
+    item.update(item_params)
     if params[:status].present?
       redirect_to merchant_items_path(item.merchant_id)
     else

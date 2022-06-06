@@ -1,45 +1,60 @@
 <%= render partial: "shared/header" %>
+<hr>
+<h4 class="d-flex justify-content-center">
+  My Items</h4>
 
-<strong>
-  My Items
-</strong>
-</br>
+<%= link_to "Create Item", new_merchant_item_path(@merchant.id) %>
+<br>
+<br>
+<div class="row">
 
-<%= link_to "Create Item", new_merchant_item_path(@merchant.id) %></br>
+  <div class="col-sm-7">
+    <div id="enabled">
+      <strong>Enabled Items</strong>
+      <% @items.each_with_index do |item, index| %>
+        <% if item.status == "Enabled" %>
+          <div class="row" id="enabled-<%= index %>">
+            <div class="col-sm-4">
+              <%= link_to item.name, merchant_item_path(@merchant.id, item.id) %>
+            </div>
+            <div class="col-sm-4">
+              <%= button_to 'Disable Item', merchant_item_path(@merchant.id, item.id), method: :patch, params: { status: "Disabled", item_id: item.id } %>
+            </div>
+          </div>
+        <%end%>
+      <%end%>
+    </div>
 
-<strong>Enabled Items</strong>
-</br>
-<% @items.each_with_index do |item, index| %>
-<div id="enabled-<%= index %>">
-<% if item.status == "Enabled" %>
-<%= link_to item.name, merchant_item_path(@merchant.id, item.id) %>
-<%= button_to 'Disable Item', merchant_item_path(@merchant.id, item.id), method: :patch, params: { status: "Disabled", item_id: item.id } %>
-</div>
-<%end%>
-<%end%>
+    <div id="disabled">
+      <strong>Disabled Items</strong>
+      <% @items.each_with_index do |item, index| %>
+        <% if item.status == "Disabled" %>
+          <div class="row" id="disabled-<%= index %>">
+            <div class="col-sm-4">
+              <%= link_to item.name, merchant_item_path(@merchant.id, item.id) %>
+            </div>
+            <div class="col-sm-4">
+              <%= button_to 'Enable Item', merchant_item_path(@merchant.id, item.id), method: :patch, params: { status: "Enabled", item_id: item.id } %>
+            </div>
+          </div>
+        <%end%>
+      <%end%>
+    </div>
+  </div>
 
-<strong>Disabled Items</strong>
-</br>
-<% @items.each_with_index do |item, index| %>
-<div id="disabled-<%= index %>">
-<% if item.status == "Disabled" %>
-<%= link_to item.name, merchant_item_path(@merchant.id, item.id) %>
-<%= button_to 'Enable Item', merchant_item_path(@merchant.id, item.id), method: :patch, params: { status: "Enabled", item_id: item.id } %>
-</div>
-<%end%>
-<%end%>
+  <div id="popular" class="col-sm-4">
+    <strong>Top Items</strong>
+    <% @items.most_popular_items.each_with_index do |item, index| %>
+      <div id="popular-<%= index %>">
+        <p><%= index + 1 %>.
+          <%= link_to item.name, merchant_item_path(@merchant.id, item.id)%>- $<%= item.total_item_revenue %>
+          in sales</p>
+        <p>Top day for
+          <%= item.name %>
+          was
+          <%= item.best_day %></p>
+      </div>
+    <%end%>
+  </div>
 
-<strong>Top Items</strong>
-<div id="popular">
-
-<% @items.most_popular_items.each_with_index do |item, index| %>
-<div id="popular-<%= index %>">
-<p><%= index + 1 %>. <%= link_to item.name, merchant_item_path(@merchant.id, item.id)%>- $<%= item.total_item_revenue %>
-in sales</p>
-<p>Top day for
-<%= item.name %>
-was
-<%= item.best_day %></p>
-</div>
-<%end%>
 </div>

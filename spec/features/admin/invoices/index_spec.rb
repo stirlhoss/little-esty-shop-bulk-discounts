@@ -39,6 +39,6 @@ RSpec.describe 'Admin Invoice Index page' do
   it 'links each invoice to its invoice show page' do
     visit admin_invoices_path
     click_on "Invoice ##{@invoice_1.id}"
-    expect(current_path).to eq(admin_invoices_path(@invoice_1.id))
+    expect(current_path).to eq(admin_invoice_path(@invoice_1.id))
   end
 end

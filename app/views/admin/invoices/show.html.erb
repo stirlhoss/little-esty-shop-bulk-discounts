@@ -1,31 +1,44 @@
 <%= render partial: "shared/admin_header" %>
+<hr>
+<h3 id="invoice-header-<%=@invoice.id%>" class="d-flex justify-content-center">
+  Invoice #<%= @invoice.id %></h3>
 
-<h1 id="invoice-header-<%=@invoice.id%>"> Invoice #<%= @invoice.id %></h1>
+<div id="invoice-<%=@invoice.id%>">
+  <%= form_with url: admin_invoice_path, method: :patch do |form| %>
+  <%= form.label :status, "Status:" %>
+  <%= form.select :status, options_for_select(["in progress", "cancelled", "completed"], selected: "#{@invoice.status}")%>
+  <%= form.submit "Update Invoice Status" %>
+  <br>
 
-<div id ="invoice-<%=@invoice.id%>">Status: <%= @invoice.status %><br>
-  Created on: <%= @invoice.created_at.strftime('%A, %B %m, %Y') %><br>
-  Customer:<br>
-  <%= @invoice.customer.first_name %> <%= @invoice.customer.last_name%><br>
+  Created on:
+  <%= @invoice.created_at.strftime('%A, %B %m, %Y') %><br>
+  Total Revenue: $<%= @invoice.total_revenue %><br>
+  <strong>Customer:</strong>
+  <%= @invoice.customer.first_name %>
+  <%= @invoice.customer.last_name%>
+
 </div>
+<br>
 
-<%= form_with url: admin_invoice_path, method: :patch do |form| %>
-<%= form.label :status, "Status:" %>
-<%= form.select :status, options_for_select(["in progress", "canelled", "completed"], selected: "#{@invoice.status}")%>
-<%= form.submit "Update Invoice Status" %>
-
-<h2>Items on this Invoice:</h2><br>
-<% @invoice.invoice_items.each do |invoice_item| %>
-  <div id="invoice-items-<%=invoice_item.id%>">
-    Item Name:
-    <%= invoice_item.item.name %><br>
-    Item Quantity:
-    <%= invoice_item.quantity %><br>
-    Item Price:
-    <%= invoice_item.item.unit_price %><br>
-    Invoice Item Status:
-    <%= invoice_item.status %><br>
-    Total Revenue: $<%= @invoice.total_revenue %><br>
-    <% end %>
-  </div>
-
-<% end %>
+<h3>Items on this Invoice:</h3><br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Unit Price</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @invoice.invoice_items.each do |invoice_item| %>
+      <tr id="invoice-items-<%=invoice_item.id%>" scope="row">
+        <td><%= invoice_item.item.name %></td>
+        <td><%= invoice_item.quantity %></td>
+        <td>$<%= invoice_item.item.unit_price %></td>
+        <td><%= invoice_item.status %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</tbody>
+</table>
