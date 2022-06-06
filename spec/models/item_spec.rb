@@ -20,7 +20,6 @@ RSpec.describe Item, type: :model do
     expect(item_1.unit_price_to_dollars).to eq('15.00')
   end
 
-
   it 'shows top five popular items' do 
     merchant = Merchant.create!(name: 'Brylan')
     customer_1 = Customer.create!(first_name: 'Joey', last_name: 'Ondricka')
@@ -123,4 +122,3 @@ RSpec.describe Item, type: :model do
     expect(item_5.best_day).to eq("03/27/2012")
   end
 end
-
