@@ -118,7 +118,7 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
 
   it 'should display unshipped items' do
     visit merchant_dashboard_index_path(@merchant.id)
-save_and_open_page
+
     within "#id-0" do
         expect(page).to have_content(@item_2.name)
         expect(page).to have_link(@invoice_9.id)
@@ -136,5 +136,11 @@ save_and_open_page
         click_link "#{@invoice_4.id}"
         expect(current_path).to eq(merchant_invoice_path(@merchant, @invoice_4))
     end
+  end
+
+  it 'has repo name from gitgub' do
+    visit merchant_dashboard_index_path(@merchant.id)
+
+    expect(page).to have_content("Little Esty Shop")
   end
 end

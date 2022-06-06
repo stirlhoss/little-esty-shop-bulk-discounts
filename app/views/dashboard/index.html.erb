@@ -1,4 +1,5 @@
 <%= render partial: "shared/header" %>
+<h1> <%= @repo.name %> </h1>
 
 <h5>
   My 5 Fave Customers
@@ -17,4 +18,3 @@
     <li> <%= invoice_item.invoice.created_at.strftime("%A, %b %d %Y") %>
   </div>
     <% end %>
-
