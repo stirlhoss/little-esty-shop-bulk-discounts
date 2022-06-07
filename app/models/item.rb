@@ -1,5 +1,3 @@
-
-
 class Item < ApplicationRecord 
 
   enum status: { 'Enabled' => 0, 'Disabled' => 1 }
@@ -11,11 +9,9 @@ class Item < ApplicationRecord
   validates_presence_of :description
   validates_presence_of :unit_price
 
-
   def unit_price_to_dollars
     unit_price.to_s.rjust(3, "0").insert(-3, ".")
   end
-
 
   def self.most_popular_items
     joins(invoice_items: [:invoice])
@@ -39,5 +35,4 @@ class Item < ApplicationRecord
     .order("revenue desc", "created_at desc")
     .first.created_at.strftime("%m/%d/%Y")
   end
-
 end
