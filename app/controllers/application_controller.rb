@@ -3,5 +3,6 @@ class ApplicationController < ActionController::Base
 
   def repo_info
     @info = RepositoryFacade.create_repo
+    
   end
 end
