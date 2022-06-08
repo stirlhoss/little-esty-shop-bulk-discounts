@@ -11,8 +11,8 @@ RSpec.describe 'Admin Invoice Show page' do
     @customer_1 = Customer.create!(first_name: 'Joey', last_name: 'Ondricka')
     @customer_2 = Customer.create!(first_name: 'Chael', last_name: 'Sonnen')
     @invoice_1 = @customer_1.invoices.create!(status: 'in progress', created_at: 'Sat, 1 Jan 2022 21:20:02 UTC +00:00')
-    @invoice_7 = @customer_1.invoices.create!(status: 'completed')
-    @invoice_5 = @customer_2.invoices.create!(status: 'completed')
+    @invoice_7 = @customer_1.invoices.create!(status: 'cancelled')
+    @invoice_5 = @customer_1.invoices.create!(status: 'in progress')
     @invoice_item_1 = @item_1.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 3, unit_price: 400, status: 'packaged',
                                                     created_at: Time.parse('2012-03-27 14:54:09 UTC'))
     @invoice_item_2 = @item_2.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 5, unit_price: 400, status: 'packaged',
@@ -67,5 +67,34 @@ RSpec.describe 'Admin Invoice Show page' do
 
     updated = find_field('status').value
     expect(updated).to eq('completed')
+  end
+
+  it 'can update the status of a invoice item', :vcr do
+    visit admin_invoice_path(@invoice_7)
+
+    current = find_field('status').value
+    expect(current).to eq('cancelled')
+
+    select('in progress')
+    click_on('Update Invoice Status')
+
+    expect(current_path).to eq(admin_invoice_path(@invoice_7))
+    
+
+    expect(page).to have_content('in progress')
+  end
+  it 'can update the status of a invoice item', :vcr do
+    visit admin_invoice_path(@invoice_5)
+
+    current = find_field('status').value
+    expect(current).to eq('in progress')
+
+    select('cancelled')
+    click_on('Update Invoice Status')
+
+    expect(current_path).to eq(admin_invoice_path(@invoice_5))
+
+
+    expect(page).to have_content('cancelled')
   end
 end

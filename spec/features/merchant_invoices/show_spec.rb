@@ -14,9 +14,9 @@ RSpec.describe 'Merchant Invoice Show page' do
     @invoice_7 = @customer_1.invoices.create!(status: 'completed')
     @invoice_item_1 = @item_1.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 3, unit_price: 400, status: 'packaged',
                                                     created_at: Time.parse('2012-03-27 14:54:09 UTC'))
-    @invoice_item_2 = @item_2.invoice_items.create!(invoice_id: @invoice_7.id, quantity: 5, unit_price: 375, status: 'packaged',
+    @invoice_item_2 = @item_2.invoice_items.create!(invoice_id: @invoice_7.id, quantity: 5, unit_price: 375, status: 'pending',
                                                     created_at: Time.parse('2012-03-28 14:54:09 UTC'))
-    @invoice_item_3 = @item_2.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 1, unit_price: 375, status: 'packaged',
+    @invoice_item_3 = @item_2.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 1, unit_price: 375, status: 'shipped',
                                                     created_at: Time.parse('2012-03-28 14:54:09 UTC'))
   end
 
@@ -55,7 +55,7 @@ RSpec.describe 'Merchant Invoice Show page' do
 
   it 'can update the status of a invoice item', :vcr do
     visit merchant_invoice_path(@merchant, @invoice_1)
-
+    # invoice item 1
     within "#invoice-items-#{@invoice_item_1.id}" do
       expect(page).to have_content('packaged')
       select('shipped')
@@ -66,17 +66,32 @@ RSpec.describe 'Merchant Invoice Show page' do
     within "#invoice-items-#{@invoice_item_1.id}" do
       expect(page).to have_content('shipped')
     end
-
+    # invoice item 3
     within "#invoice-items-#{@invoice_item_3.id}" do
-      expect(page).to have_content('packaged')
-      select('shipped')
+      expect(page).to have_content('shipped')
+      select('pending')
       click_on('Update Item Status')
     end
 
     expect(current_path).to eq(merchant_invoice_path(@merchant, @invoice_1))
 
     within "#invoice-items-#{@invoice_item_3.id}" do
+      expect(page).to have_content('pending')
+    end
+  end
+
+  it 'can update the status of a invoice item', :vcr do
+    visit merchant_invoice_path(@merchant, @invoice_1)
+    # invoice item 1
+    within "#invoice-items-#{@invoice_item_3.id}" do
       expect(page).to have_content('shipped')
+      select('packaged')
+      click_on('Update Item Status')
+    end
+
+    expect(current_path).to eq(merchant_invoice_path(@merchant, @invoice_1))
+    within "#invoice-items-#{@invoice_item_3.id}" do
+      expect(page).to have_content('packaged')
     end
   end
 end
