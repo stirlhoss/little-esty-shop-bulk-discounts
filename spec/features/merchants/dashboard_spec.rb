@@ -60,7 +60,7 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
     @invoice_13.transactions.create!(credit_card_number: '6654405418249644', result: 'failed')
   end
 
-  it 'should display the name of the merchant' do
+  it 'should display the name of the merchant', :vcr do
     visit merchant_dashboard_index_path(@merchant.id)
 
     within '#name' do
@@ -68,14 +68,14 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
     end
   end
 
-  it 'should have links to merchant items index and merchant invoices index' do
+  it 'should have links to merchant items index and merchant invoices index', :vcr do
     visit merchant_dashboard_index_path(@merchant.id)
 
     expect(page).to have_link('My Items')
     expect(page).to have_link('My Invoices')
   end
 
-  it 'should display top 5 customers with number of successful transactions' do
+  it 'should display top 5 customers with number of successful transactions', :vcr do
     visit merchant_dashboard_index_path(@merchant.id)
 
     within "#id-#{@customer_4.id}" do
@@ -114,14 +114,14 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
     end
   end
 
-  it 'should display unshipped items' do
+  it 'should display unshipped items', :vcr do
     visit merchant_dashboard_index_path(@merchant.id)
 
-    within "#id-0" do
-        expect(page).to have_content(@item_2.name)
-        expect(page).to have_link(@invoice_9.id)
-        expect(page).to have_content("Thursday, Jan 26 2012")
-        expect(page).to_not have_content(@item_3.name)
+    within '#id-0' do
+      expect(page).to have_content(@item_2.name)
+      expect(page).to have_link(@invoice_9.id)
+      expect(page).to have_content('Thursday, Jan 26 2012')
+      expect(page).to_not have_content(@item_3.name)
     end
 
     within '#id-1' do
@@ -136,9 +136,9 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
     end
   end
 
-  it 'has repo name from gitgub' do
+  it 'has repo name from gitgub', :vcr do
     visit merchant_dashboard_index_path(@merchant.id)
 
-    expect(page).to have_content("Little Esty Shop")
+    expect(page).to have_content('Little Esty Shop')
   end
 end
