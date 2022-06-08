@@ -26,7 +26,7 @@ RSpec.describe 'Admin Invoice Show page' do
     @invoice_1.transactions.create!(credit_card_number: '4654405418249635', result: 'success')
   end
 
-  it 'displays the invoice information' do
+  it 'displays the invoice information', :vcr do
     visit admin_invoice_path(@invoice_1)
 
     within "#invoice-header-#{@invoice_1.id}" do
@@ -40,21 +40,21 @@ RSpec.describe 'Admin Invoice Show page' do
     end
   end
 
-  it 'displays the invoice items information' do
+  it 'displays the invoice items information', :vcr do
     visit admin_invoice_path(@invoice_1)
     within "#invoice-items-#{@invoice_item_1.id}" do
       expect(page).to have_content('Pencil 3 $500 packaged')
     end
   end
 
-  it 'displays the ammount of total revenue made by the invoice' do
+  it 'displays the ammount of total revenue made by the invoice', :vcr do
     visit admin_invoice_path(@invoice_1)
     within "#invoice-#{@invoice_1.id}" do
       expect(page).to have_content("Total Revenue: $#{@invoice_1.total_revenue}")
     end
   end
 
-  it 'can update the status of a invoice item' do
+  it 'can update the status of a invoice item', :vcr do
     visit admin_invoice_path(@invoice_1)
 
     current = find_field('status').value

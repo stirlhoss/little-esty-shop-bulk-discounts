@@ -1,4 +1,4 @@
-require 'rails_helper'
+, :vcr require 'rails_helper'
 
 RSpec.describe 'Admin Merchant Show', type: :feature do
   before :each do
@@ -48,7 +48,7 @@ RSpec.describe 'Admin Merchant Show', type: :feature do
     @t6 = Transaction.create!(credit_card_number: 102_938, result: 1, invoice_id: @i1.id)
   end
 
-  it 'should have links to it from admin/index' do
+  it 'should have links to it from admin/index' , :vcr do
     visit admin_merchants_path
 
     within "#disabled-#{@m1.id}" do

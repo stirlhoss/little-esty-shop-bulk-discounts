@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Item Index' do
-  it 'lists names of all items' do
+  it 'lists names of all items', :vcr do
     merchant_1 = Merchant.create(name: "Ray's Handmade Jewelry")
     item_1 = merchant_1.items.create!(name: 'Dangly Earings', description: 'They tickle your neck.', unit_price: 1500)
     item_2 = merchant_1.items.create!(name: 'Gold Ring', description: 'There are many rings of power...',
@@ -20,7 +20,7 @@ RSpec.describe 'Item Index' do
     expect(page).to_not have_content(item_4.name)
   end
 
-  it 'has link to all of the merchants items' do
+  it 'has link to all of the merchants items', :vcr do
     merchant_1 = Merchant.create(name: "Ray's Handmade Jewelry")
     item_1 = merchant_1.items.create!(name: 'Dangly Earings', description: 'They tickle your neck.', unit_price: 1500)
 
@@ -31,7 +31,7 @@ RSpec.describe 'Item Index' do
     expect(current_path).to eq(merchant_item_path(merchant_1.id, item_1.id))
   end
 
-  it 'has secton for enabled items and disabled items' do
+  it 'has secton for enabled items and disabled items', :vcr do
     merchant_1 = Merchant.create(name: "Ray's Handmade Jewelry")
     item_1 = merchant_1.items.create!(name: 'Dangly Earings', description: 'They tickle your neck.', unit_price: 1500,
                                       status: 'Enabled')
@@ -54,7 +54,7 @@ RSpec.describe 'Item Index' do
     end
   end
 
-  it 'has a button to change item status to Enabled' do
+  it 'has a button to change item status to Enabled', :vcr do
     merchant_1 = Merchant.create(name: "Ray's Handmade Jewelry")
     item_1 = merchant_1.items.create!(name: 'Dangly Earings', description: 'They tickle your neck.', unit_price: 1500,
                                       status: 'Enabled')
@@ -82,7 +82,7 @@ RSpec.describe 'Item Index' do
     end
   end
 
-  it 'has a button to change item status to Disabled' do
+  it 'has a button to change item status to Disabled', :vcr do
     merchant_1 = Merchant.create(name: "Ray's Handmade Jewelry")
     item_1 = merchant_1.items.create!(name: 'Dangly Earings', description: 'They tickle your neck.', unit_price: 1500,
                                       status: 'Enabled')
@@ -104,7 +104,7 @@ RSpec.describe 'Item Index' do
     expect(nu_changed_item.status).to eq('Disabled')
   end
 
-  it 'has a link to create a new item' do
+  it 'has a link to create a new item', :vcr  do
     merchant_1 = Merchant.create(name: "Ray's Handmade Jewelry")
     item_1 = merchant_1.items.create!(name: 'Dangly Earings', description: 'They tickle your neck.', unit_price: 1500,
                                       status: 'Enabled')
@@ -120,7 +120,7 @@ RSpec.describe 'Item Index' do
     expect(current_path).to eq(new_merchant_item_path(merchant_1.id))
   end
 
-  it 'lists 5 most popular items in order of total revenue' do
+  it 'lists 5 most popular items in order of total revenue', :vcr do
     merchant = Merchant.create!(name: 'Office Supplies')
     customer_1 = Customer.create!(first_name: 'Joey', last_name: 'Ondricka')
     invoice_1 = customer_1.invoices.create!(status: 'completed',
@@ -164,7 +164,7 @@ RSpec.describe 'Item Index' do
     end
   end
 
-  it 'has link to each item show page in top items section' do
+  it 'has link to each item show page in top items section', :vcr do
     merchant = Merchant.create!(name: 'Office Supplies')
     customer_1 = Customer.create!(first_name: 'Joey', last_name: 'Ondricka')
     invoice_1 = customer_1.invoices.create!(status: 'completed',
@@ -179,11 +179,11 @@ RSpec.describe 'Item Index' do
     within('#popular') do
       click_link 'Pencil'
     end
-    
+
     expect(current_path).to eq(merchant_item_path(merchant.id, item_1.id))
   end
 
-  it 'has total revenue for each item' do
+  it 'has total revenue for each item', :vcr  do
     merchant = Merchant.create!(name: 'Office Supplies')
     customer_1 = Customer.create!(first_name: 'Joey', last_name: 'Ondricka')
     invoice_1 = customer_1.invoices.create!(status: 'completed',
@@ -237,7 +237,7 @@ RSpec.describe 'Item Index' do
     end
   end
 
-  it 'shows top items best day' do
+  it 'shows top items best day', :vcr do
     merchant = Merchant.create!(name: 'Office Supplies')
     customer_1 = Customer.create!(first_name: 'Joey', last_name: 'Ondricka')
     invoice_1 = customer_1.invoices.create!(status: 'completed',
