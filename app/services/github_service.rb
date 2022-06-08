@@ -1,4 +1,4 @@
-class GithubService < BaseService
+class GithubService
   def self.get_repo_data
     response = conn.get('/repos/bwbolt/little-esty-shop')
     parse(response)
@@ -8,10 +8,8 @@ class GithubService < BaseService
     response = conn.get('/repos/bwbolt/little-esty-shop/pulls?state=closed&per_page=100')
     parse(response)
   end
-  # def self.get_pull_data
-  #   response = conn('https://api.github.com').get('/repos/bwbolt/little-esty-shop/pulls')
-  #   get_json(response)
-  # end
+
+  private
 
   def self.conn
     Faraday.new('https://api.github.com')
