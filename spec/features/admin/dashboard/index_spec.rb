@@ -72,7 +72,7 @@ RSpec.describe 'admin dashboard' do
       expect(page).to have_content("#{@customer_4.first_name} #{@customer_4.last_name} 1")
     end
 
-    it 'shows a section of incomplete invoices' do
+    it 'shows a section of incomplete invoices', :vcr do
       visit admin_dashboard_path
       within '#incomplete_invoices' do
         expect(page).to have_content(@ii_2.id.to_s)

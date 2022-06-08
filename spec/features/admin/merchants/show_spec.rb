@@ -1,4 +1,4 @@
-, :vcr require 'rails_helper'
+require 'rails_helper'
 
 RSpec.describe 'Admin Merchant Show', type: :feature do
   before :each do
