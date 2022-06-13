@@ -1,0 +1,12 @@
+<%= render partial: 'shared/header' %>
+
+<h1>Create New Discount</h1>
+<hr>
+<%= form_with model: @bulk_discount, url: merchant_bulk_discounts_path(@merchant) do |f| %>
+    When a customer purchases
+    <%= f.select :threshold, options_for_select(1..100)%>
+    units of an item, they will recieve a
+    <%= f.select :percentage, options_for_select([5,10,15,20,25,30,35,40,45,50,65,70])%>
+    discount on those items.
+    <%= f.submit "Create" %>
+<%end %>
