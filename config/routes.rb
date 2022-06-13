@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :merchants do
     resources :bulk_discounts, controller: 'merchant_bulk_discounts',
-              only: %i[index show new create]
+              only: %i[index show new create update edit destroy]
     resources :items, only: %i[index show edit update new create]
     resources :dashboard, only: [:index]
     resources :invoices, only: %i[index show] do
