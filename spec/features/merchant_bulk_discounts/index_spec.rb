@@ -7,7 +7,7 @@ RSpec.describe 'MerchantBulkDiscounts::Index' do
     @discount1 = BulkDiscount.create!(percentage: 10, threshold: 10, merchant_id: @merchant1.id)
     @discount2 = BulkDiscount.create!(percentage: 20, threshold: 20, merchant_id: @merchant1.id)
     @discount3 = BulkDiscount.create!(percentage: 30, threshold: 30, merchant_id: @merchant1.id)
-    @discount4 = BulkDiscount.create!(percentage: 30, threshold: 30, merchant_id: @merchant2.id)
+    @discount4 = BulkDiscount.create!(percentage: 40, threshold: 40, merchant_id: @merchant2.id)
 
   end
 
@@ -33,5 +33,29 @@ RSpec.describe 'MerchantBulkDiscounts::Index' do
       expect(page).to have_content(@discount3.threshold)
       expect(page).to have_link('View Discount')
     end
+
+    expect(page).to_not have_content(@discount4.percentage)
+    expect(page).to_not have_content(@discount4.threshold)
+  end
+
+  it 'should contain a link to the create a new discount', :vcr do
+    visit merchant_bulk_discounts_path(@merchant1)
+
+    click_link "Create New Discount"
+
+    expect(current_path).to eq(new_merchant_bulk_discount_path(@merchant1))
+
+    within '#threshold' do
+      select(55)
+    end
+    within '#percentage' do
+      select(20)
+    end
+
+    click_on 'Create'
+
+    expect(current_path).to eq(merchant_bulk_discounts_path(@merchant1))
+
+    expect(page).to have_content 'Buy 55 units, get a 20.0% discount'
   end
 end
