@@ -8,7 +8,6 @@ RSpec.describe 'MerchantBulkDiscounts::Index' do
     @discount2 = BulkDiscount.create!(percentage: 20, threshold: 20, merchant_id: @merchant1.id)
     @discount3 = BulkDiscount.create!(percentage: 30, threshold: 30, merchant_id: @merchant1.id)
     @discount4 = BulkDiscount.create!(percentage: 40, threshold: 40, merchant_id: @merchant2.id)
-
   end
 
   it 'should be linked to from the merchants dashboard', :vcr do
