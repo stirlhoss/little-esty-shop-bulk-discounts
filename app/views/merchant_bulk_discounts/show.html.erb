@@ -1,3 +1,9 @@
 <%= render partial: "shared/header" %>
 
-<div>
+<div id='information'>
+    <p>If a customer buys
+        <%= @discount.threshold %> units,
+        they will receive a
+        <%= @discount.percentage %> discount.
+    </p>
+</div>
