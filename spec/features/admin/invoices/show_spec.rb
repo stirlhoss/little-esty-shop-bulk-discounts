@@ -79,7 +79,6 @@ RSpec.describe 'Admin Invoice Show page' do
     click_on('Update Invoice Status')
 
     expect(current_path).to eq(admin_invoice_path(@invoice_7))
-    
 
     expect(page).to have_content('in progress')
   end
@@ -94,7 +93,13 @@ RSpec.describe 'Admin Invoice Show page' do
 
     expect(current_path).to eq(admin_invoice_path(@invoice_5))
 
-
     expect(page).to have_content('cancelled')
+  end
+
+  it 'displays the discounted revenue on the invoice', :vcr do
+    visit admin_invoice_path(@invoice_1)
+    within "#invoice-#{@invoice_1.id}" do
+      expect(page).to have_content("Discounted Revenue: $#{@invoice_1.invoice_discounted_revenue}")
+    end
   end
 end
