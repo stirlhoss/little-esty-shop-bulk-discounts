@@ -19,7 +19,7 @@ http_interactions:
       message: rate limit exceeded
     headers:
       Date:
-      - Tue, 14 Jun 2022 20:26:28 GMT
+      - Tue, 14 Jun 2022 20:27:42 GMT
       Server:
       - Varnish
       Strict-Transport-Security:
@@ -50,7 +50,7 @@ http_interactions:
       X-Ratelimit-Remaining:
       - '0'
       X-Ratelimit-Reset:
-      - '1655238545'
+      - '1655238546'
       X-Ratelimit-Resource:
       - core
       X-Ratelimit-Used:
@@ -58,7 +58,7 @@ http_interactions:
       Content-Length:
       - '280'
       X-Github-Request-Id:
-      - DD72:0723:8E240:167AA1:62A8EEF4
+      - DD79:3546:748DB:14988D:62A8EF3E
     body:
       encoding: UTF-8
       string: '{"message":"API rate limit exceeded for 140.141.235.92. (But here''s
@@ -66,7 +66,7 @@ http_interactions:
         documentation for more details.)","documentation_url":"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting"}
 
         '
-  recorded_at: Tue, 14 Jun 2022 20:26:27 GMT
+  recorded_at: Tue, 14 Jun 2022 20:27:40 GMT
 - request:
     method: get
     uri: https://api.github.com/repos/bwbolt/little-esty-shop/contributors
@@ -86,7 +86,7 @@ http_interactions:
       message: rate limit exceeded
     headers:
       Date:
-      - Tue, 14 Jun 2022 20:26:28 GMT
+      - Tue, 14 Jun 2022 20:27:42 GMT
       Server:
       - Varnish
       Strict-Transport-Security:
@@ -117,7 +117,7 @@ http_interactions:
       X-Ratelimit-Remaining:
       - '0'
       X-Ratelimit-Reset:
-      - '1655238545'
+      - '1655238546'
       X-Ratelimit-Resource:
       - core
       X-Ratelimit-Used:
@@ -125,7 +125,7 @@ http_interactions:
       Content-Length:
       - '280'
       X-Github-Request-Id:
-      - DD73:706C:58133:C8D0A:62A8EEF4
+      - DD7A:2991:70B90:156CF9:62A8EF3E
     body:
       encoding: UTF-8
       string: '{"message":"API rate limit exceeded for 140.141.235.92. (But here''s
@@ -133,5 +133,5 @@ http_interactions:
         documentation for more details.)","documentation_url":"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting"}
 
         '
-  recorded_at: Tue, 14 Jun 2022 20:26:27 GMT
+  recorded_at: Tue, 14 Jun 2022 20:27:40 GMT
 recorded_with: VCR 6.1.0
