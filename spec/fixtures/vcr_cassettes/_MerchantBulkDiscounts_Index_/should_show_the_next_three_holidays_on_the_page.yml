@@ -1,0 +1,465 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://date.nager.at/api/v3/PublicHolidays/2022/US
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Jun 2022 20:38:22 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Api-Supported-Versions:
+      - 1.0, 2.0, 3.0
+      Cache-Control:
+      - max-age=28800
+      Cf-Cache-Status:
+      - HIT
+      Age:
+      - '1002'
+      Last-Modified:
+      - Tue, 14 Jun 2022 20:21:40 GMT
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=EzFLpo%2Fc77Fi55M463k3vwaiReiskWVyAIsgUvvrvbOZ0IHROLZdD%2BqxCHmj0ITIxdOljKX5L5Biv%2FlkJW8EGKDlX4WWeKFyPA7SIUFBd4vceFssyF5H48HPMfOXdauV"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Vary:
+      - Accept-Encoding
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 71b5de838cca631e-ORD
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"date":"2021-12-31","localName":"New Year''s Day","name":"New Year''s
+        Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-01-17","localName":"Martin
+        Luther King, Jr. Day","name":"Martin Luther King, Jr. Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-02-21","localName":"Presidents
+        Day","name":"Washington''s Birthday","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-04-15","localName":"Good
+        Friday","name":"Good Friday","countryCode":"US","fixed":false,"global":false,"counties":["US-CT","US-DE","US-HI","US-IN","US-KY","US-LA","US-NC","US-ND","US-NJ","US-TN"],"launchYear":null,"types":["Public"]},{"date":"2022-04-15","localName":"Good
+        Friday","name":"Good Friday","countryCode":"US","fixed":false,"global":false,"counties":["US-TX"],"launchYear":null,"types":["Optional"]},{"date":"2022-05-30","localName":"Memorial
+        Day","name":"Memorial Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-06-20","localName":"Juneteenth","name":"Juneteenth","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":2021,"types":["Public"]},{"date":"2022-07-04","localName":"Independence
+        Day","name":"Independence Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-09-05","localName":"Labor
+        Day","name":"Labour Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-10-10","localName":"Columbus
+        Day","name":"Columbus Day","countryCode":"US","fixed":false,"global":false,"counties":["US-AL","US-AZ","US-CO","US-CT","US-DC","US-GA","US-ID","US-IL","US-IN","US-IA","US-KS","US-KY","US-LA","US-ME","US-MD","US-MA","US-MS","US-MO","US-MT","US-NE","US-NH","US-NJ","US-NM","US-NY","US-NC","US-OH","US-OK","US-PA","US-RI","US-SC","US-TN","US-UT","US-VA","US-WV"],"launchYear":null,"types":["Public"]},{"date":"2022-11-11","localName":"Veterans
+        Day","name":"Veterans Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-11-24","localName":"Thanksgiving
+        Day","name":"Thanksgiving Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":1863,"types":["Public"]},{"date":"2022-12-26","localName":"Christmas
+        Day","name":"Christmas Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]}]'
+  recorded_at: Tue, 14 Jun 2022 20:38:20 GMT
+- request:
+    method: get
+    uri: https://date.nager.at/api/v3/PublicHolidays/2022/US
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Jun 2022 20:38:22 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Api-Supported-Versions:
+      - 1.0, 2.0, 3.0
+      Cache-Control:
+      - max-age=28800
+      Cf-Cache-Status:
+      - HIT
+      Age:
+      - '1002'
+      Last-Modified:
+      - Tue, 14 Jun 2022 20:21:40 GMT
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=yXSaUMt6QCLy3XKZrmjaX2lOz3zooMfk4Nk1XKDz6U7aIA807%2B1lihwlyYeYkLsAJ9RI59TIaR2nebFh3lOHIa0Ck6zWVadZRf1hXxxYjBsnqK9vdZETRLIZybBqm%2FrB"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Vary:
+      - Accept-Encoding
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 71b5de83ecb86312-ORD
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"date":"2021-12-31","localName":"New Year''s Day","name":"New Year''s
+        Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-01-17","localName":"Martin
+        Luther King, Jr. Day","name":"Martin Luther King, Jr. Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-02-21","localName":"Presidents
+        Day","name":"Washington''s Birthday","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-04-15","localName":"Good
+        Friday","name":"Good Friday","countryCode":"US","fixed":false,"global":false,"counties":["US-CT","US-DE","US-HI","US-IN","US-KY","US-LA","US-NC","US-ND","US-NJ","US-TN"],"launchYear":null,"types":["Public"]},{"date":"2022-04-15","localName":"Good
+        Friday","name":"Good Friday","countryCode":"US","fixed":false,"global":false,"counties":["US-TX"],"launchYear":null,"types":["Optional"]},{"date":"2022-05-30","localName":"Memorial
+        Day","name":"Memorial Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-06-20","localName":"Juneteenth","name":"Juneteenth","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":2021,"types":["Public"]},{"date":"2022-07-04","localName":"Independence
+        Day","name":"Independence Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-09-05","localName":"Labor
+        Day","name":"Labour Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-10-10","localName":"Columbus
+        Day","name":"Columbus Day","countryCode":"US","fixed":false,"global":false,"counties":["US-AL","US-AZ","US-CO","US-CT","US-DC","US-GA","US-ID","US-IL","US-IN","US-IA","US-KS","US-KY","US-LA","US-ME","US-MD","US-MA","US-MS","US-MO","US-MT","US-NE","US-NH","US-NJ","US-NM","US-NY","US-NC","US-OH","US-OK","US-PA","US-RI","US-SC","US-TN","US-UT","US-VA","US-WV"],"launchYear":null,"types":["Public"]},{"date":"2022-11-11","localName":"Veterans
+        Day","name":"Veterans Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-11-24","localName":"Thanksgiving
+        Day","name":"Thanksgiving Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":1863,"types":["Public"]},{"date":"2022-12-26","localName":"Christmas
+        Day","name":"Christmas Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]}]'
+  recorded_at: Tue, 14 Jun 2022 20:38:20 GMT
+- request:
+    method: get
+    uri: https://date.nager.at/api/v3/PublicHolidays/2022/US
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Jun 2022 20:38:22 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Api-Supported-Versions:
+      - 1.0, 2.0, 3.0
+      Cache-Control:
+      - max-age=28800
+      Cf-Cache-Status:
+      - HIT
+      Age:
+      - '966'
+      Last-Modified:
+      - Tue, 14 Jun 2022 20:22:16 GMT
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=YI%2FxLm9YmSD3VlDXU76o8Prfepkedefy9QMdnJaqRzOcn90XApt4LbhtLkLuwR%2B5IZqzS8QNkYh%2FBS5g%2FFzI3%2BYhVVlwSZ8rxBpnTlBC8oMBXgTI0KdIcbGrrRDcI1Nf"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Vary:
+      - Accept-Encoding
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 71b5de843c1c2c90-ORD
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"date":"2021-12-31","localName":"New Year''s Day","name":"New Year''s
+        Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-01-17","localName":"Martin
+        Luther King, Jr. Day","name":"Martin Luther King, Jr. Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-02-21","localName":"Presidents
+        Day","name":"Washington''s Birthday","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-04-15","localName":"Good
+        Friday","name":"Good Friday","countryCode":"US","fixed":false,"global":false,"counties":["US-CT","US-DE","US-HI","US-IN","US-KY","US-LA","US-NC","US-ND","US-NJ","US-TN"],"launchYear":null,"types":["Public"]},{"date":"2022-04-15","localName":"Good
+        Friday","name":"Good Friday","countryCode":"US","fixed":false,"global":false,"counties":["US-TX"],"launchYear":null,"types":["Optional"]},{"date":"2022-05-30","localName":"Memorial
+        Day","name":"Memorial Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-06-20","localName":"Juneteenth","name":"Juneteenth","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":2021,"types":["Public"]},{"date":"2022-07-04","localName":"Independence
+        Day","name":"Independence Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-09-05","localName":"Labor
+        Day","name":"Labour Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-10-10","localName":"Columbus
+        Day","name":"Columbus Day","countryCode":"US","fixed":false,"global":false,"counties":["US-AL","US-AZ","US-CO","US-CT","US-DC","US-GA","US-ID","US-IL","US-IN","US-IA","US-KS","US-KY","US-LA","US-ME","US-MD","US-MA","US-MS","US-MO","US-MT","US-NE","US-NH","US-NJ","US-NM","US-NY","US-NC","US-OH","US-OK","US-PA","US-RI","US-SC","US-TN","US-UT","US-VA","US-WV"],"launchYear":null,"types":["Public"]},{"date":"2022-11-11","localName":"Veterans
+        Day","name":"Veterans Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-11-24","localName":"Thanksgiving
+        Day","name":"Thanksgiving Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":1863,"types":["Public"]},{"date":"2022-12-26","localName":"Christmas
+        Day","name":"Christmas Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]}]'
+  recorded_at: Tue, 14 Jun 2022 20:38:20 GMT
+- request:
+    method: get
+    uri: https://date.nager.at/api/v3/PublicHolidays/2022/US
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Jun 2022 20:38:22 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Api-Supported-Versions:
+      - 1.0, 2.0, 3.0
+      Cache-Control:
+      - max-age=28800
+      Cf-Cache-Status:
+      - HIT
+      Age:
+      - '966'
+      Last-Modified:
+      - Tue, 14 Jun 2022 20:22:16 GMT
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=PbBlnoGTZt44GibcCVLFBYsBwSErwdY%2FcIYgxJzumAAuUUVfzhKyaA7vayWpO9q64prLaw1Kk10y1Wutc%2Bco9QF1%2Btp6GzI4Wa2R%2FiYj94wf71VIfi6FQr0Wj2rQ5hDV"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Vary:
+      - Accept-Encoding
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 71b5de84af21872e-ORD
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"date":"2021-12-31","localName":"New Year''s Day","name":"New Year''s
+        Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-01-17","localName":"Martin
+        Luther King, Jr. Day","name":"Martin Luther King, Jr. Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-02-21","localName":"Presidents
+        Day","name":"Washington''s Birthday","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-04-15","localName":"Good
+        Friday","name":"Good Friday","countryCode":"US","fixed":false,"global":false,"counties":["US-CT","US-DE","US-HI","US-IN","US-KY","US-LA","US-NC","US-ND","US-NJ","US-TN"],"launchYear":null,"types":["Public"]},{"date":"2022-04-15","localName":"Good
+        Friday","name":"Good Friday","countryCode":"US","fixed":false,"global":false,"counties":["US-TX"],"launchYear":null,"types":["Optional"]},{"date":"2022-05-30","localName":"Memorial
+        Day","name":"Memorial Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-06-20","localName":"Juneteenth","name":"Juneteenth","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":2021,"types":["Public"]},{"date":"2022-07-04","localName":"Independence
+        Day","name":"Independence Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-09-05","localName":"Labor
+        Day","name":"Labour Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-10-10","localName":"Columbus
+        Day","name":"Columbus Day","countryCode":"US","fixed":false,"global":false,"counties":["US-AL","US-AZ","US-CO","US-CT","US-DC","US-GA","US-ID","US-IL","US-IN","US-IA","US-KS","US-KY","US-LA","US-ME","US-MD","US-MA","US-MS","US-MO","US-MT","US-NE","US-NH","US-NJ","US-NM","US-NY","US-NC","US-OH","US-OK","US-PA","US-RI","US-SC","US-TN","US-UT","US-VA","US-WV"],"launchYear":null,"types":["Public"]},{"date":"2022-11-11","localName":"Veterans
+        Day","name":"Veterans Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-11-24","localName":"Thanksgiving
+        Day","name":"Thanksgiving Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":1863,"types":["Public"]},{"date":"2022-12-26","localName":"Christmas
+        Day","name":"Christmas Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]}]'
+  recorded_at: Tue, 14 Jun 2022 20:38:20 GMT
+- request:
+    method: get
+    uri: https://date.nager.at/api/v3/PublicHolidays/2022/US
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Jun 2022 20:38:22 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Api-Supported-Versions:
+      - 1.0, 2.0, 3.0
+      Cache-Control:
+      - max-age=28800
+      Cf-Cache-Status:
+      - HIT
+      Age:
+      - '5501'
+      Last-Modified:
+      - Tue, 14 Jun 2022 19:06:41 GMT
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=IBMMGvVIJcFLS9DTdVnxy2ZWyMH01zXcRFj4qrjCdusHjnGwLClkyrc5yhVR4dQ5CNhomwotO7DWw25gI2xdHTdH1IJt0qVQzFfhfdr6uw9qFpGQIZhpE%2BiRaeYsXXvN"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Vary:
+      - Accept-Encoding
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 71b5de852a20c54c-ORD
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"date":"2021-12-31","localName":"New Year''s Day","name":"New Year''s
+        Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-01-17","localName":"Martin
+        Luther King, Jr. Day","name":"Martin Luther King, Jr. Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-02-21","localName":"Presidents
+        Day","name":"Washington''s Birthday","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-04-15","localName":"Good
+        Friday","name":"Good Friday","countryCode":"US","fixed":false,"global":false,"counties":["US-CT","US-DE","US-HI","US-IN","US-KY","US-LA","US-NC","US-ND","US-NJ","US-TN"],"launchYear":null,"types":["Public"]},{"date":"2022-04-15","localName":"Good
+        Friday","name":"Good Friday","countryCode":"US","fixed":false,"global":false,"counties":["US-TX"],"launchYear":null,"types":["Optional"]},{"date":"2022-05-30","localName":"Memorial
+        Day","name":"Memorial Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-06-20","localName":"Juneteenth","name":"Juneteenth","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":2021,"types":["Public"]},{"date":"2022-07-04","localName":"Independence
+        Day","name":"Independence Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-09-05","localName":"Labor
+        Day","name":"Labour Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-10-10","localName":"Columbus
+        Day","name":"Columbus Day","countryCode":"US","fixed":false,"global":false,"counties":["US-AL","US-AZ","US-CO","US-CT","US-DC","US-GA","US-ID","US-IL","US-IN","US-IA","US-KS","US-KY","US-LA","US-ME","US-MD","US-MA","US-MS","US-MO","US-MT","US-NE","US-NH","US-NJ","US-NM","US-NY","US-NC","US-OH","US-OK","US-PA","US-RI","US-SC","US-TN","US-UT","US-VA","US-WV"],"launchYear":null,"types":["Public"]},{"date":"2022-11-11","localName":"Veterans
+        Day","name":"Veterans Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-11-24","localName":"Thanksgiving
+        Day","name":"Thanksgiving Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":1863,"types":["Public"]},{"date":"2022-12-26","localName":"Christmas
+        Day","name":"Christmas Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]}]'
+  recorded_at: Tue, 14 Jun 2022 20:38:20 GMT
+- request:
+    method: get
+    uri: https://date.nager.at/api/v3/PublicHolidays/2022/US
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Jun 2022 20:38:22 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Api-Supported-Versions:
+      - 1.0, 2.0, 3.0
+      Cache-Control:
+      - max-age=28800
+      Cf-Cache-Status:
+      - HIT
+      Age:
+      - '966'
+      Last-Modified:
+      - Tue, 14 Jun 2022 20:22:16 GMT
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Brr9LDNrtDPg%2B1zUVTQ4JwTwuJc75%2BQF6TTXm5CkIcU0IiHb0klRZuc8nNFDpP%2BVhHD8eV6TAxTtDSG%2FurpI2PCfsoXV77XVv9K7n4BPpoBNlaVJ2jW7r4WxVcQFFR3Q"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Vary:
+      - Accept-Encoding
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 71b5de85ae5e8728-ORD
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"date":"2021-12-31","localName":"New Year''s Day","name":"New Year''s
+        Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-01-17","localName":"Martin
+        Luther King, Jr. Day","name":"Martin Luther King, Jr. Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-02-21","localName":"Presidents
+        Day","name":"Washington''s Birthday","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-04-15","localName":"Good
+        Friday","name":"Good Friday","countryCode":"US","fixed":false,"global":false,"counties":["US-CT","US-DE","US-HI","US-IN","US-KY","US-LA","US-NC","US-ND","US-NJ","US-TN"],"launchYear":null,"types":["Public"]},{"date":"2022-04-15","localName":"Good
+        Friday","name":"Good Friday","countryCode":"US","fixed":false,"global":false,"counties":["US-TX"],"launchYear":null,"types":["Optional"]},{"date":"2022-05-30","localName":"Memorial
+        Day","name":"Memorial Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-06-20","localName":"Juneteenth","name":"Juneteenth","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":2021,"types":["Public"]},{"date":"2022-07-04","localName":"Independence
+        Day","name":"Independence Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-09-05","localName":"Labor
+        Day","name":"Labour Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-10-10","localName":"Columbus
+        Day","name":"Columbus Day","countryCode":"US","fixed":false,"global":false,"counties":["US-AL","US-AZ","US-CO","US-CT","US-DC","US-GA","US-ID","US-IL","US-IN","US-IA","US-KS","US-KY","US-LA","US-ME","US-MD","US-MA","US-MS","US-MO","US-MT","US-NE","US-NH","US-NJ","US-NM","US-NY","US-NC","US-OH","US-OK","US-PA","US-RI","US-SC","US-TN","US-UT","US-VA","US-WV"],"launchYear":null,"types":["Public"]},{"date":"2022-11-11","localName":"Veterans
+        Day","name":"Veterans Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-11-24","localName":"Thanksgiving
+        Day","name":"Thanksgiving Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":1863,"types":["Public"]},{"date":"2022-12-26","localName":"Christmas
+        Day","name":"Christmas Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]}]'
+  recorded_at: Tue, 14 Jun 2022 20:38:20 GMT
+- request:
+    method: get
+    uri: https://date.nager.at/api/v3/PublicHolidays/2022/US
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Jun 2022 20:38:22 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Api-Supported-Versions:
+      - 1.0, 2.0, 3.0
+      Cache-Control:
+      - max-age=28800
+      Cf-Cache-Status:
+      - HIT
+      Age:
+      - '1002'
+      Last-Modified:
+      - Tue, 14 Jun 2022 20:21:40 GMT
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=xew4j%2F7gj430%2Fm491KG3RNj6AB059c8NKuzwN6mac45klQOKhW1odXMK8k6YbhLolKa96kv%2F%2F4Q8nG58z%2FkoEATYJytimjfaNBTOC5ssSKQa6f4w3n8PkxBJP2ELnhVv"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Vary:
+      - Accept-Encoding
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 71b5de862b57639c-ORD
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"date":"2021-12-31","localName":"New Year''s Day","name":"New Year''s
+        Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-01-17","localName":"Martin
+        Luther King, Jr. Day","name":"Martin Luther King, Jr. Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-02-21","localName":"Presidents
+        Day","name":"Washington''s Birthday","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-04-15","localName":"Good
+        Friday","name":"Good Friday","countryCode":"US","fixed":false,"global":false,"counties":["US-CT","US-DE","US-HI","US-IN","US-KY","US-LA","US-NC","US-ND","US-NJ","US-TN"],"launchYear":null,"types":["Public"]},{"date":"2022-04-15","localName":"Good
+        Friday","name":"Good Friday","countryCode":"US","fixed":false,"global":false,"counties":["US-TX"],"launchYear":null,"types":["Optional"]},{"date":"2022-05-30","localName":"Memorial
+        Day","name":"Memorial Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-06-20","localName":"Juneteenth","name":"Juneteenth","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":2021,"types":["Public"]},{"date":"2022-07-04","localName":"Independence
+        Day","name":"Independence Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-09-05","localName":"Labor
+        Day","name":"Labour Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-10-10","localName":"Columbus
+        Day","name":"Columbus Day","countryCode":"US","fixed":false,"global":false,"counties":["US-AL","US-AZ","US-CO","US-CT","US-DC","US-GA","US-ID","US-IL","US-IN","US-IA","US-KS","US-KY","US-LA","US-ME","US-MD","US-MA","US-MS","US-MO","US-MT","US-NE","US-NH","US-NJ","US-NM","US-NY","US-NC","US-OH","US-OK","US-PA","US-RI","US-SC","US-TN","US-UT","US-VA","US-WV"],"launchYear":null,"types":["Public"]},{"date":"2022-11-11","localName":"Veterans
+        Day","name":"Veterans Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]},{"date":"2022-11-24","localName":"Thanksgiving
+        Day","name":"Thanksgiving Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":1863,"types":["Public"]},{"date":"2022-12-26","localName":"Christmas
+        Day","name":"Christmas Day","countryCode":"US","fixed":false,"global":true,"counties":null,"launchYear":null,"types":["Public"]}]'
+  recorded_at: Tue, 14 Jun 2022 20:38:20 GMT
+recorded_with: VCR 6.1.0
