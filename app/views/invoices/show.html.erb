@@ -33,6 +33,11 @@
         <td><%= invoice_item.item.name %></td>
         <td><%= invoice_item.quantity %></td>
         <td><%= invoice_item.item.unit_price %></td>
+        <% if invoice_item.best_discount %>
+          <td><%= link_to 'View', merchant_bulk_discount_path(@merchant, id: invoice_item.best_discount.id) %>
+        <% else %>
+            <td>No discounts</td>
+        <% end %>
 
         <td>
           <%= form_with url: merchant_invoice_invoice_item_path(@merchant, invoice_item), method: :patch do |form| %>
