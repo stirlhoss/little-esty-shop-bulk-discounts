@@ -4,6 +4,8 @@
     <p>If a customer buys
         <%= @discount.threshold %> units,
         they will receive a
-        <%= @discount.percentage %> discount.
+        <%= @discount.percentage %> percent discount.
     </p>
 </div>
+
+<%= link_to "Edit Discount", edit_merchant_bulk_discount_path(@merchant, @discount)%>

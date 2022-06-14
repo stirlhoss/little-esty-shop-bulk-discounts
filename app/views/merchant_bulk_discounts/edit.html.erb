@@ -1,0 +1,12 @@
+<%= render partial: "shared/header" %>
+
+<br>
+
+<%= form_with model: [:merchant, @discount] do |f| %>
+    <%= f.label :threshold, "Threshold" %>
+    <%= f.select :threshold, options_for_select((1..100), selected: @discount.threshold) %>
+    <%= f.label :percentage, "Percentage" %>
+    <%= f.select :percentage, options_for_select((1..50), selected: @discount.percentage) %>
+    <%= f.hidden_field :merchant_id, value: @merchant.id %>
+    <%= f.submit "Update Discount" %>
+<% end %>
