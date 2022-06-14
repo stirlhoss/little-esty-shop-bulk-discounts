@@ -28,4 +28,8 @@ class Invoice < ApplicationRecord
                  .where(merchants: { id: merchant_id })
                  .sum(&:discounted_revenue).to_i
   end
+
+  def invoice_discounted_revenue
+    invoice_items.joins(:item).sum(&:discounted_revenue).to_i
+  end
 end
