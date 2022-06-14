@@ -8,6 +8,9 @@ RSpec.describe 'Merchant Invoice Show page' do
     @item_3 = @merchant.items.create!(name: 'Marker', unit_price: 400,
                                       description: 'Writes things, but dark, and thicc.')
 
+    @discount1 = @merchant.bulk_discounts.create!(threshold: 3, percentage: 10)
+    @discount2 = @merchant.bulk_discounts.create!(threshold: 5, percentage: 15)
+
     @customer_1 = Customer.create!(first_name: 'Joey', last_name: 'Ondricka')
     @invoice_1 = @customer_1.invoices.create!(status: 'completed',
                                               created_at: 'Wed, 01 Jan 2022 21:20:02 UTC +00:00')
@@ -49,7 +52,7 @@ RSpec.describe 'Merchant Invoice Show page' do
     visit merchant_invoice_path(@merchant, @invoice_1)
 
     within "#invoice-#{@invoice_1.id}" do
-      expect(page).to have_content('Total Revenue: $15.75')
+      expect(page).to have_content('Total Revenue: $1575')
     end
   end
 
@@ -92,6 +95,14 @@ RSpec.describe 'Merchant Invoice Show page' do
     expect(current_path).to eq(merchant_invoice_path(@merchant, @invoice_1))
     within "#invoice-items-#{@invoice_item_3.id}" do
       expect(page).to have_content('packaged')
+    end
+  end
+
+  it 'can display the discounted revenue from the invoice', :vcr do
+    visit merchant_invoice_path(@merchant, @invoice_1)
+
+    within "#invoice-#{@invoice_1.id}" do
+      expect(page).to have_content('Discounted Revenue: $1455')
     end
   end
 end
