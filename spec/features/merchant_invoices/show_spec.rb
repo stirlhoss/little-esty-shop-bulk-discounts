@@ -58,7 +58,6 @@ RSpec.describe 'Merchant Invoice Show page' do
 
   it 'can update the status of a invoice item', :vcr do
     visit merchant_invoice_path(@merchant, @invoice_1)
-    # invoice item 1
     within "#invoice-items-#{@invoice_item_1.id}" do
       expect(page).to have_content('packaged')
       select('shipped')
@@ -69,7 +68,6 @@ RSpec.describe 'Merchant Invoice Show page' do
     within "#invoice-items-#{@invoice_item_1.id}" do
       expect(page).to have_content('shipped')
     end
-    # invoice item 3
     within "#invoice-items-#{@invoice_item_3.id}" do
       expect(page).to have_content('shipped')
       select('pending')
@@ -85,7 +83,7 @@ RSpec.describe 'Merchant Invoice Show page' do
 
   it 'can update the status of a invoice item', :vcr do
     visit merchant_invoice_path(@merchant, @invoice_1)
-    # invoice item 1
+
     within "#invoice-items-#{@invoice_item_3.id}" do
       expect(page).to have_content('shipped')
       select('packaged')
