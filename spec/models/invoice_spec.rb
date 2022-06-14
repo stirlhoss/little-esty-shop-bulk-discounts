@@ -29,7 +29,7 @@ RSpec.describe Invoice, type: :model do
                                     created_at: Time.parse('2012-03-27 14:54:09 UTC'))
       @item_2.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 1, unit_price: 375, status: 'packaged',
                                     created_at: Time.parse('2012-03-28 14:54:09 UTC'))
-      expect(@invoice_1.total_revenue).to eq(15.75)
+      expect(@invoice_1.total_revenue).to eq(1575)
     end
 
     it '#best_day' do
@@ -79,6 +79,25 @@ RSpec.describe Invoice, type: :model do
       @t6 = Transaction.create!(credit_card_number: 102_938, result: 1, invoice_id: @i1.id)
 
       expect(Invoice.best_day.created_at).to eq(@i3.created_at)
+    end
+
+    it '#discounted_revenue(merchant_id)' do
+      @m1 = Merchant.create!(name: 'Merchant 1')
+      @discount1 = BulkDiscount.create!(threshold: 5, percentage: 10, merchant_id: @m1.id)
+
+      @c1 = Customer.create!(first_name: 'Yo', last_name: 'Yoz')
+      @c2 = Customer.create!(first_name: 'Hey', last_name: 'Heyz')
+
+      @i1 = Invoice.create!(customer_id: @c1.id, status: 2, created_at: Time.parse('2012-03-27 14:54:09 UTC'))
+
+      @item_1 = Item.create!(name: 'Shampoo', description: 'This washes your hair', unit_price: 10, merchant_id: @m1.id)
+      @item_2 = Item.create!(name: 'Conditioner', description: 'This makes your hair shiny', unit_price: 8,
+                             merchant_id: @m1.id)
+      @ii_1 = InvoiceItem.create!(invoice_id: @i1.id, item_id: @item_1.id, quantity: 1, unit_price: 10, status: 0)
+      @ii_2 = InvoiceItem.create!(invoice_id: @i1.id, item_id: @item_2.id, quantity: 6, unit_price: 8, status: 1)
+
+      expect(@i1.total_revenue).to eq(58)
+      expect(@i1.discounted_revenue(@m1)).to eq(53)
     end
   end
 end
