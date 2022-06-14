@@ -11,7 +11,7 @@ class Invoice < ApplicationRecord
   validates_presence_of :status
 
   def total_revenue
-    invoice_items.sum('quantity * unit_price').to_f / 100
+    invoice_items.sum('quantity * unit_price').to_f
   end
 
   def self.best_day
@@ -21,5 +21,11 @@ class Invoice < ApplicationRecord
       .group(:created_at)
       .order(best_day: :desc)
       .first
+  end
+
+  def discounted_revenue(merchant_id)
+    invoice_items.joins(item: :merchant)
+                 .where(merchants: { id: merchant_id })
+                 .sum(&:discounted_revenue).to_i
   end
 end
