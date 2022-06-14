@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'MerchantBulkDiscounts::Index' do
+RSpec.describe MerchantBulkDiscounts: :Index do
   before :each do
     @merchant1 = Merchant.create!(name: 'Bobby Brown')
     @merchant2 = Merchant.create!(name: 'Steven Right')
@@ -40,7 +40,7 @@ RSpec.describe 'MerchantBulkDiscounts::Index' do
   it 'should contain a link to the create a new discount', :vcr do
     visit merchant_bulk_discounts_path(@merchant1)
 
-    click_link "Create New Discount"
+    click_link 'Create New Discount'
 
     expect(current_path).to eq(new_merchant_bulk_discount_path(@merchant1))
 
@@ -72,5 +72,23 @@ RSpec.describe 'MerchantBulkDiscounts::Index' do
     expect(page).to have_content('Buy 20 units, get a 20.0% discount')
     expect(page).to have_content('Buy 30 units, get a 30.0% discount')
     expect(page).to_not have_content('Buy 10 units, get a 10.0% discount')
+  end
+
+  it 'should show the next three holidays on the page', :vcr do
+    visit merchant_bulk_discounts_path(@merchant1)
+
+    @holidays = HolidayFacade.new
+
+    expect(page).to have_content(@holidays.next_three_holidays[0].name)
+
+    expect(page).to have_content(@holidays.next_three_holidays[0].date)
+
+    expect(page).to have_content(@holidays.next_three_holidays[1].name)
+
+    expect(page).to have_content(@holidays.next_three_holidays[1].date)
+
+    expect(page).to have_content(@holidays.next_three_holidays[2].name)
+
+    expect(page).to have_content(@holidays.next_three_holidays[2].date)
   end
 end

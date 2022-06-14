@@ -1,4 +1,4 @@
-<%= render partial: "shared/header" %>
+<%#= render partial: "shared/header" %>
 <br>
 <%= link_to "Create New Discount", new_merchant_bulk_discount_path(@merchant) %>
 
@@ -15,3 +15,12 @@
     </div>
   <% end %>
 </div>
+
+<h3>Upcoming Holidays</h3>
+
+<br>
+
+<% @holidays.next_three_holidays.each do |holiday| %>
+    <h4>Name: </h4><%= holiday.name %>
+    <h4>Date: </h4><%= holiday.date %>
+<% end %>
